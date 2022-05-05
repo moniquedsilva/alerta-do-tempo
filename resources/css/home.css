@@ -5,9 +5,11 @@
 
 .home {
   display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 0 72px;
+  padding: 0 32px;
   color: #fff;
   background-color: #1b065e;
 }
@@ -15,20 +17,23 @@
 .home__content {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 2rem;
-  max-width: 615px;
+  max-width: 450px;
+  margin-bottom: 3.5rem;
+  text-align: center;
 }
 
 .home__title {
   margin: 0;
   font-family: var(--poppins);
-  font-size: 4.5rem;
+  font-size: 2.5rem;
 }
 
 .home__paragraph {
   margin: 0;
   font-family: var(--montserrat);
-  font-size: 1.5rem;
+  font-size: 1rem;
   line-height: 160%;
 }
 
@@ -54,31 +59,88 @@
   font-size: 1rem;
 }
 
+@media (min-width: 70rem) {
+  .home {
+    flex-direction: row;
+    padding: 0 72px;
+  }
+
+  .home__content {
+    max-width: 600px;
+    margin: 0;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .home__title {
+    font-size: 3.5rem;
+  }
+
+  .home__paragraph {
+    font-size: 1.3rem;
+  }
+}
+
+@media (min-width: 90rem) {
+  .home__title {
+    font-size: 4rem;
+  }
+
+  .home__paragraph {
+    font-size: 1.4rem;
+  }
+}
+
 .home__images-area {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   position: relative;
 }
 
 .home__img-sms {
+  width: 320px;
   transform: translate(0);
-  transition: all 0.5s;
-}
-
-.home__img-sms:hover {
-  transform: translate(-70px, -50px);
+  transition: all 0.5s linear;
 }
 
 .home__img-sol {
   position: absolute;
-  top: 35px;
-  right: 0px;
+  top: 10px;
+  right: 5px;
+  width: 160px;
   transform: translate(0);
-  transition: all 0.5s;
+  transition: all 0.5s linear;
   z-index: 1;
 }
 
-.home__img-sol:hover {
-  transform: translate(50px, -30px);
+@media (min-width: 70rem) {
+  .home__img-sms {
+    width: 600px;
+  }
+
+  .home__img-sms:hover {
+    transform: translate(-70px, -50px);
+  }
+
+  .home__img-sol {
+    top: 35px;
+    right: 0px;
+    width: 330px;
+  }
+
+  .home__img-sol:hover {
+    transform: translate(50px, -30px);
+  }
+}
+
+@media (min-width: 90rem) {
+  .home__img-sms {
+    width: 679px;
+  }
+
+  .home__img-sol {
+    width: 330px;
+  }
 }
