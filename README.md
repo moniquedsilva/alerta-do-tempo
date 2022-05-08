@@ -2,31 +2,45 @@
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/moniquedsilva/alerta-do-tempo?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/moniquedsilva/alerta-do-tempo?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/iuricode/moniquedsilva/alerta-do-tempo?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/moniquedsilva/alerta-do-tempo?style=for-the-badge)
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/moniquedsilva/alerta-do-tempo?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/moniquedsilva/alerta-do-tempo?style=for-the-badge)
 
 <img src="readme/tela.png" alt="exemplo imagem" align="center">
 
-> Instruções do projeto
+> Cadastre-se na nossa plataforma e passe a receber alertas SMS em tempo real quando houver situações perigosas relacionadas a chuvas fortes, condições de UV perigosas e/ou ondas marítimas agitadas.
 
 
-## :earth_americas: Description
+## :earth_americas: Descrição
+
+  Sistema de alerta e previsão do tempo, capaz de notificar dispositivos cadastrados na plataforma web. Os dispositivos receberão alertas sms em tempo real quando houver situações perigosas relacionadas a chuvas fortes, condições de UV perigosas e/ou ondas marítimas agitadas. Iremos utilizar HTML, CSS e Javascript para construir o front-end, Python(Django) para manipular os dados no back-end, MongoDB para o banco de dados, uma API da INPE (Instituto Nacional de Pesquisas Espaciais) para coletarmos dados sobre o tempo em tempo real, e o protocolo SMS (Short Message Service) para notificar os celulares cadastrados.
 
 - ### [Mockup](https://www.figma.com/file/8yBYbRXj2DwAk3MIccJeOc/Alerta-do-Tempo)
 
-## :rocket: Technology
+## :rocket: Tecnologias
 
-- :snake: Python
+- <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="">
 
-- :guitar: Django
+- <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" alt="">
 
-- :shamrock: MongoDB
+- <img src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white" alt="">
 
-## :world_map: Routes
+- <img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white" alt="">
+
+- <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="">
+
+-  <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white" alt="">
+
+## :world_map: Rotas
 
 
-## :flight_departure: Installation
+## :flight_departure: Instalação
 
 
-## :airplane: Running the app
+## :airplane: Rodando o projeto na sua máquina
+
+## 📝 Licença
+
+Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE) para mais detalhes.
+
+[⬆ Voltar ao topo](#nome-do-projeto)<br>
