@@ -2,7 +2,7 @@
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/moniquedsilva/alerta-do-tempo?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/moniquedsilva/alerta-do-tempo?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/all-contributors/moniquedsilva/alerta-do-tempo?style=for-the-badge)
+![GitHub contrinutors](https://img.shields.io/github/contributors/moniquedsilva/alerta-do-tempo?style=for-the-badge)
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/moniquedsilva/alerta-do-tempo?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/moniquedsilva/alerta-do-tempo?style=for-the-badge)
 
