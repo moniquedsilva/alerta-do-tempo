@@ -1,0 +1,28 @@
+.form-main {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  display: none;
+}
+
+@media (min-width: 47.9em) {
+  .form-main__imagem {
+    display: block;
+    width: 50%;
+    background-image: url('../assets/images/homem-celular.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-color: #99ceff;
+    align-self: stretch;
+  }
+}
+
+@media (min-width: 90em) {
+  .container {
+    background-size: 700px;
+  }
+}
