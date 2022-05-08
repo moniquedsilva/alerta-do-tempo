@@ -46,6 +46,47 @@ Linux e macOS:
 
 ## :airplane: Rodando o projeto na sua máquina
 
+## 🤝 Colaboradores
+
+Nossa equipe é composta por:
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/72633880?v=4" width="100px;" alt="Foto da Milena no GitHub"/><br>
+        <sub>
+          <b>Milena Limoeiro</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/71049865?v=4" width="100px;" alt="Foto da Monique"/><br>
+        <sub>
+          <b>Monique Silva</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/96872438?v=4" width="100px;" alt="Foto do Yuri"/><br>
+        <sub>
+          <b> Edson Yuri Silva</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <img src="https://miro.medium.com/max/360/0*1SkS3mSorArvY9kS.jpg" width="100px;" alt="Foto do changes"/><br>
+        <sub>
+          <b>Steve Jobs</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
 
 ## 📝 Licença
 
