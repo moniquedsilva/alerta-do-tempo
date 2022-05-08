@@ -36,11 +36,19 @@
 
 ## :flight_departure: Instalação
 
+Para instalar o <nome_do_projeto>, siga estas etapas:
+
+Linux e macOS:
+
+```
+<comando_de_instalação>
+```
 
 ## :airplane: Rodando o projeto na sua máquina
+
 
 ## 📝 Licença
 
 Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE) para mais detalhes.
 
-[⬆ Voltar ao topo](#nome-do-projeto)<br>
+[⬆ Voltar ao topo](#alerta-do-tempo)<br>
