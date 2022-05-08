@@ -1,15 +1,15 @@
-.form-main {
+.form {
   display: flex;
   width: 100%;
   height: 100vh;
 }
 
-.container {
+.form__image {
   display: none;
 }
 
 @media (min-width: 47.9em) {
-  .form-main__imagem {
+  .form__image {
     display: block;
     width: 50%;
     background-image: url('../assets/images/homem-celular.svg');
@@ -22,7 +22,7 @@
 }
 
 @media (min-width: 90em) {
-  .container {
+  .form__image {
     background-size: 700px;
   }
 }
