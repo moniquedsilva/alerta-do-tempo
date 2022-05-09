@@ -1,5 +1,4 @@
 import pymongo
-from django.conf import settings
-client = pymongo.MongoClient('mongodb+srv://alerta:alerta@cluster0.ngat2.mongodb.net/AlertaDoTempo?retryWrites=true&w=majority')
+client = pymongo.MongoClient('')
 db = client['AlertaDoTempo']
 collection = db["Clientes"]
