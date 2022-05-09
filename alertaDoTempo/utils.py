@@ -10,3 +10,4 @@ NOME_DATABASE = os.getenv('NOME_DATABASE')
 client = pymongo.MongoClient(STR_CONEXAO_DB)
 db = client[NOME_DATABASE]
 collection = db["Clientes"]
+
