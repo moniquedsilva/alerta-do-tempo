@@ -1,15 +1,20 @@
-.form {
-  display: flex;
-  width: 100%;
-  height: 100vh;
+:root {
+  --poppins: 'Poppins', sans-serif;
+  --montserrat: 'Montserrat', sans-serif;
 }
 
-.form__image {
+.cadastro {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.cadastro__imagem {
   display: none;
 }
 
 @media (min-width: 47.9em) {
-  .form__image {
+  .cadastro__imagem {
     display: block;
     width: 50%;
     background-image: url('../assets/images/homem-celular.svg');
@@ -22,7 +27,75 @@
 }
 
 @media (min-width: 90em) {
-  .form__image {
+  .cadastro__imagem {
     background-size: 700px;
   }
+}
+
+.cadastro__area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2rem;
+  font-family: var(--montserrat);
+  font-size: 1rem;
+  color: #212121;
+  text-align: center;
+  background-color: #f6f6f6;
+}
+
+.cadastro__titulo {
+  font-family: var(--poppins);
+  font-weight: 700;
+  font-size: 2.9rem;
+}
+
+.cadastro__paragrafo {
+  max-width: 400px;
+  font-family: var(--montserrat);
+  font-size: 1rem;
+  line-height: 140%;
+}
+
+.cadastro__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.cadastro__form label {
+  display: none;
+}
+
+.cadastro__button {
+  width: 100%;
+  margin-top: 50px;
+  padding: 14px 0;
+  border: transparent;
+  border-radius: 8px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  background-color: #4461f2;
+}
+
+.cadastro__form a {
+  text-decoration: none;
+  font-weight: 700;
+  color: #4461f2;
+}
+
+.cadastro__form p {
+  margin: 0;
+}
+
+.cadastro__form input {
+  padding: 18px 20px;
+  border: transparent;
+  border-radius: 8px;
+  background-color: #eaf0f7;
 }
