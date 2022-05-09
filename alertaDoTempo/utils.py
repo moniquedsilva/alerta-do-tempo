@@ -1,5 +1,12 @@
+from dotenv import load_dotenv
 import pymongo
-from django.conf import settings
-client = pymongo.MongoClient('mongodb+srv://alerta:alerta@cluster0.ngat2.mongodb.net/AlertaDoTempo?retryWrites=true&w=majority')
-db = client['AlertaDoTempo']
+import os
+
+load_dotenv()
+
+STR_CONEXAO_DB = os.getenv('STR_CONEXAO_DB')
+NOME_DATABASE = os.getenv('NOME_DATABASE')
+
+client = pymongo.MongoClient(STR_CONEXAO_DB)
+db = client[NOME_DATABASE]
 collection = db["Clientes"]

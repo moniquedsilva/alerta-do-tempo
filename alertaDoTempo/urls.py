@@ -1,9 +1,9 @@
 from django.urls import path
 
-from . import views
+from alertaDoTempo.controllers import ClienteController
 
 app_name = 'alertaDoTempo'
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('cadastro/', views.cadastro, name='cadastro'),
+    path('', ClienteController.index, name='index'),
+    path('cadastra', ClienteController.cadastra, name='cadastra')
 ]
