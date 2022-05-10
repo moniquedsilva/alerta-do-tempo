@@ -25,9 +25,16 @@
           </p>
           <form action="" class="cadastro__form">
             <label for="nome">Nome</label>
-            <input type="text" name="nome" placeholder="Nome" required />
+            <input
+              class="cadastro__input"
+              type="text"
+              name="nome"
+              placeholder="Nome"
+              required
+            />
             <label for="celular">Celular</label>
             <input
+              class="cadastro__input"
               type="tel"
               name="celular"
               placeholder="Celular"
@@ -37,7 +44,22 @@
               required
             />
             <label for="senha">Senha</label>
-            <input type="password" name="senha" placeholder="Senha " />
+            <input
+              class="cadastro__input"
+              type="password"
+              name="senha"
+              placeholder="Senha "
+            />
+            <div class="cadastro__dropdown">
+              <label for="estado">Estado</label>
+              <select id="estado" class="cadastro__select" name="estado">
+                <option value="none" selected disabled hidden>Estado</option>
+              </select>
+              <label for="municipio">Municipio</label>
+              <select id="municipio" class="cadastro__select" name="municipio">
+                <option value="none" selected disabled hidden>Municipio</option>
+              </select>
+            </div>
             <button class="cadastro__button">Continuar</button>
             <p>Já tem uma conta? <a href="#">Entrar</a></p>
           </form>
