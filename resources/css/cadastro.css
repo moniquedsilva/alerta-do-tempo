@@ -100,11 +100,36 @@
   margin: 0;
 }
 
-.cadastro__form input {
+.cadastro__input {
   padding: 16px 20px;
   border: transparent;
   border-radius: 8px;
   background-color: #eaf0f7;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #4f555a;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #4f555a !important;
+}
+
+.cadastro__dropdown {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cadastro__select {
+  width: 192px;
+  padding: 10px 14px;
+  border: 6px solid #eaf0f7;
+  border-radius: 8px;
+  background-color: #eaf0f7;
+  color: #4f555a;
 }
 
 @media (min-width: 47.9em) {
