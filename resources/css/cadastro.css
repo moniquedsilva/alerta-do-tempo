@@ -28,7 +28,13 @@
 
 @media (min-width: 90em) {
   .cadastro__imagem {
-    background-size: 700px;
+    background-size: 650px;
+  }
+}
+
+@media (min-width: 125em) {
+  .cadastro__imagem {
+    background-position: right;
   }
 }
 
@@ -40,22 +46,23 @@
   width: 100%;
   padding: 2rem;
   font-family: var(--montserrat);
-  font-size: 1rem;
+  font-size: 0.875rem;
   color: #212121;
   text-align: center;
   background-color: #f6f6f6;
 }
 
 .cadastro__titulo {
+  margin: 0;
   font-family: var(--poppins);
   font-weight: 700;
-  font-size: 2.9rem;
+  font-size: 2.1rem;
 }
 
 .cadastro__paragrafo {
   max-width: 400px;
   font-family: var(--montserrat);
-  font-size: 1rem;
+  font-size: 0.875rem;
   line-height: 140%;
 }
 
@@ -94,8 +101,35 @@
 }
 
 .cadastro__form input {
-  padding: 18px 20px;
+  padding: 16px 20px;
   border: transparent;
   border-radius: 8px;
   background-color: #eaf0f7;
+}
+
+@media (min-width: 47.9em) {
+  .cadastro__area {
+    width: 50%;
+    font-size: 1rem;
+  }
+
+  .cadastro__titulo {
+    font-size: 2.6rem;
+  }
+
+  .cadastro__paragrafo {
+    font-size: 1rem;
+    max-width: 400px;
+  }
+
+  .cadastro__form {
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 125em) {
+  .cadastro__area {
+    align-items: flex-start;
+    padding: 0 0 0 120px;
+  }
 }
