@@ -7,6 +7,7 @@
   display: flex;
   width: 100%;
   min-height: 100vh;
+  overflow-y: auto;
 }
 
 .cadastro__imagem {
@@ -124,12 +125,16 @@
 }
 
 .cadastro__select {
-  width: 192px;
+  width: 48%;
   padding: 10px 14px;
   border: 6px solid #eaf0f7;
   border-radius: 8px;
   background-color: #eaf0f7;
   color: #4f555a;
+}
+
+.cadastro__lembrete {
+  text-align: right;
 }
 
 @media (min-width: 47.9em) {
