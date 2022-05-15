@@ -7,6 +7,8 @@
     <form action="" method="post" style="display:inline-grid;" id="formCadastro">
         {% csrf_token %}
         <label for="nome">Nome: </label><input type="text" id="nome" name="nome"/>
+        <label for="nome">DDI: </label><input type="text" id="ddi" name="ddi" value="55" readonly style="color: lightslategray;"/>
+        <label for="nome">DDD: </label><input type="text" id="ddd" name="ddd"/>
         <label for="celular">Celular: </label><input type="text" id="celular" name="celular"/>
         <label for="senha">Senha: </label><input type="password" id="senha" name="senha"/>
         <label for="estado">Estado: </label>
@@ -52,7 +54,6 @@
         xhr.onload = () => respostaRequisicao(xhr.responseText);
 
         let data = new URLSearchParams(new FormData(event.target)).toString();
-        console.log(data);
 
         xhr.send(data);
     };
@@ -60,20 +61,14 @@
     //Resposta para inserção do cadastro
     function respostaRequisicao(respostaJSON){
         var resposta = JSON.parse(respostaJSON);
-        var body = document.getElementById("body");
-        if(resposta['sucesso'] == true){
-            body.innerHTML = "<h1>Sucesso!</h1>";
-            body.animate([{opacity: 0, backgroundColor: "#fff"},
-                        {opacity: 1, backgroundColor: "#0f0"}
-                    ], { duration: 2000, fill: 'forwards' });
-        }else{
-            body.innerHTML = "<h1>Erro de Inserção!</h1>";
-            body.animate([{opacity: 0, backgroundColor: "#fff"},
-                        {opacity: 1, backgroundColor: "#f00"}
-                    ], { duration: 2000, fill: 'forwards' });
+        if(resposta['status'] == true){
+            document.getElementById("formCadastro").reset();
         }
         
+        alert(resposta['msg']);
+       
     }
+
 
     function populaMuncipio(event){
         
@@ -93,14 +88,15 @@
 
     function respostaPopulaMunicipio(dadosJSON){
         var dados = JSON.parse(dadosJSON);
-        console.log(dados);
         let select = document.getElementById('municipio');
         select.innerHTML = "";
-        for (key in dados){
+        for (d of dados['municipios']){
             var opt = document.createElement('option');
-            opt.value = key;
-            opt.innerHTML = dados[key]
-            select.appendChild(opt);
+            for(key in d){
+                opt.value = key;
+                opt.innerHTML = d[key]
+                select.appendChild(opt);
+            }
         }
     }
 </script>
