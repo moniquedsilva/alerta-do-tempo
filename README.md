@@ -53,7 +53,7 @@ Nossa equipe é composta por:
 <table>
   <tr>
     <td align="center">
-      <a href="#">
+      <a href="https://github.com/Konstructa">
         <img src="https://avatars.githubusercontent.com/u/72633880?v=4" width="100px;" alt="Foto da Milena no GitHub"/><br>
         <sub>
           <b>Milena Limoeiro</b>
@@ -61,7 +61,7 @@ Nossa equipe é composta por:
       </a>
     </td>
     <td align="center">
-      <a href="#">
+      <a href="https://github.com/moniquedsilva">
         <img src="https://avatars.githubusercontent.com/u/71049865?v=4" width="100px;" alt="Foto da Monique"/><br>
         <sub>
           <b>Monique Silva</b>
@@ -69,7 +69,7 @@ Nossa equipe é composta por:
       </a>
     </td>
     <td align="center">
-      <a href="#">
+      <a href="#https://github.com/yuriKode">
         <img src="https://avatars.githubusercontent.com/u/96872438?v=4" width="100px;" alt="Foto do Yuri"/><br>
         <sub>
           <b> Edson Yuri Silva</b>
