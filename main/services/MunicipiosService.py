@@ -1,18 +1,16 @@
+import pymongo
 from main.utils import dbMunicipios
-from main.utils import dbEstados
-
 class MunicipiosService:
 
     def __init__(self):
-        None
+        pass
     
-    @classmethod
-    def buscaSiglasEstados(cls):
-        return dbEstados.find(projection = {'nome': False})
+    def buscaCidadesByEstado(self, jsonQuery):
+        return dbMunicipios.find(jsonQuery, {'_id':False, 'estado_id': False, 'nome_formatado':False, 'litoranea': False}).sort("nome_formatado", pymongo.ASCENDING)
     
-    @classmethod
-    def buscaCidadesByEstado(cls, jsonQuery):
-        return dbMunicipios.find(jsonQuery, {'estado_id': False, 'nome_formatado':False, 'litoranea': False}).sort("nome")
-        
+    def municipioIdExiste(self, municipio_id):
+        return dbMunicipios.count_documents({"id": municipio_id})
+    
+
 
         
