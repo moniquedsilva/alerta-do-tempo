@@ -69,7 +69,7 @@ Nossa equipe é composta por:
       </a>
     </td>
     <td align="center">
-      <a href="#https://github.com/yuriKode">
+      <a href="https://github.com/yuriKode">
         <img src="https://avatars.githubusercontent.com/u/96872438?v=4" width="100px;" alt="Foto do Yuri"/><br>
         <sub>
           <b> Edson Yuri Silva</b>
