@@ -77,10 +77,10 @@ Nossa equipe é composta por:
       </a>
     </td>
     <td align="center">
-      <a href="#">
-        <img src="https://miro.medium.com/max/360/0*1SkS3mSorArvY9kS.jpg" width="100px;" alt="Foto do changes"/><br>
+      <a href="https://github.com/felipe-sanches">
+        <img src="https://avatars.githubusercontent.com/u/38739389?v=4" width="100px;" alt="Foto do changes"/><br>
         <sub>
-          <b>Steve Jobs</b>
+          <b>Felipe Sanches</b>
         </sub>
       </a>
     </td>
