@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from main.controllers.ClienteController import ClienteController
 
 urlpatterns = [
-    path('alertaDoTempo/', include('alertaDoTempo.urls')),
-    path('admin/', admin.site.urls),
+    path('cliente/', ClienteController.as_view(), name='clienteIndex'),
+    path('cliente/cadastra', ClienteController.cadastra, name='clienteCadastra'),
+    path('cliente/loadCidadesByEstado', ClienteController.loadCidadesByEstado, name='loadCidadesByEstado')
 ]
