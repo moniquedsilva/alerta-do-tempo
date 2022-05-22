@@ -44,7 +44,7 @@
         event.preventDefault();
         
         let xhr = new XMLHttpRequest();
-        var url = "{% url 'clienteCadastra' %}";
+        var url = "{% url 'cadastra' %}";
 
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Accept", 'application/x-www-form-urlencoded');
