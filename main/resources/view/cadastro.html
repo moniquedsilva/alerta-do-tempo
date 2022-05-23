@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/cadastro.css" />
-    <link rel="stylesheet" href="../css/normalize.css" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/cadastro.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,7 +24,8 @@
           <p class="cadastro__paragrafo">
             Faça seu cadastro para ter acesso a funcionalidades exclusivas
           </p>
-          <form action="" class="cadastro__form">
+          <form action="" id="form_cadastro" class="cadastro__form">
+            {% csrf_token %}
             <label for="nome">Nome</label>
             <input
               class="cadastro__input"
@@ -32,15 +34,17 @@
               placeholder="Nome"
               required
             />
+            <label for="ddi">DDI: </label><input type="text" id="ddi" name="ddi" value="55" readonly style="color: lightslategray;"/>
+            <label for="ddd">DDD: </label><input type="text" id="ddd" name="ddd"/>
             <label for="celular">Celular</label>
             <input
               class="cadastro__input"
               type="tel"
               name="celular"
               placeholder="Celular"
-              pattern="[0-9]{12}"
+              pattern="[0-9]{9}"
               maxlength="12"
-              title="Insira no formato correto Ex: 71978654321"
+              title="Insira no formato correto Ex: 978654321"
               required
             />
             <label for="senha">Senha</label>
@@ -53,7 +57,9 @@
             <div class="cadastro__dropdown">
               <label for="estado">Estado</label>
               <select id="estado" class="cadastro__select" name="estado">
-                <option value="none" selected disabled hidden>Estado</option>
+                {% for estado in estados %}
+                <option value="{{ estado.id }}">{{ estado.sigla }}</option>
+                {% endfor %}
               </select>
               <label for="municipio">Municipio</label>
               <select id="municipio" class="cadastro__select" name="municipio">
@@ -69,4 +75,9 @@
       </section>
     </main>
   </body>
+  <script type="text/javascript">
+    const URL_SUBMIT_FORM = "{% url 'cadastrar' %}";
+    const URL_LOAD_MUNICIPIOS = "{% url 'loadCidadesByEstado' %}";
+  </script>
+  <script type="text/javascript" src="{% static 'js/cadastro.js' %}"></script>
 </html>

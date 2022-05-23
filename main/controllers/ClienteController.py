@@ -14,7 +14,7 @@ class ClienteController(View):
     def get(self, request, *args, **kwargs):
         estadosService = EstadosService()
         estados = estadosService.buscaSiglasEstados()
-        return render(request,'cliente/index.html', {'estados': estados})
+        return render(request,'cadastro.html', {'estados': estados})
     
     #Cadastro via POST
     def cadastra(request):
