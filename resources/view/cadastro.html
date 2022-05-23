@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/cadastro.css" />
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Alerta do Tempo | Cadastro</title>
+  </head>
+  <body>
+    <main>
+      <section class="cadastro">
+        <div class="cadastro__imagem"></div>
+        <div class="cadastro__area">
+          <h1 class="cadastro__titulo">Alerta do Tempo</h1>
+          <p class="cadastro__paragrafo">
+            Faça seu cadastro para ter acesso a funcionalidades exclusivas
+          </p>
+          <form action="" class="cadastro__form">
+            <label for="nome">Nome</label>
+            <input
+              class="cadastro__input"
+              type="text"
+              name="nome"
+              placeholder="Nome"
+              required
+            />
+            <label for="celular">Celular</label>
+            <input
+              class="cadastro__input"
+              type="tel"
+              name="celular"
+              placeholder="Celular"
+              pattern="[0-9]{12}"
+              maxlength="12"
+              title="Insira no formato correto Ex: 71978654321"
+              required
+            />
+            <label for="senha">Senha</label>
+            <input
+              class="cadastro__input"
+              type="password"
+              name="senha"
+              placeholder="Senha "
+            />
+            <div class="cadastro__dropdown">
+              <label for="estado">Estado</label>
+              <select id="estado" class="cadastro__select" name="estado">
+                <option value="none" selected disabled hidden>Estado</option>
+              </select>
+              <label for="municipio">Municipio</label>
+              <select id="municipio" class="cadastro__select" name="municipio">
+                <option value="none" selected disabled hidden>Municipio</option>
+              </select>
+            </div>
+            <button class="cadastro__button">Continuar</button>
+            <p class="cadastro__lembrete">
+              Já tem uma conta? <a href="#">Entrar</a>
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
