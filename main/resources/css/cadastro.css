@@ -89,6 +89,7 @@
   font-weight: 700;
   color: #fff;
   background-color: #4461f2;
+  cursor: pointer;
 }
 
 .cadastro__form a {
@@ -135,6 +136,28 @@
 
 .cadastro__lembrete {
   text-align: right;
+}
+
+.cadastro__telefone {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.cadastro__telefone input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 6px solid #eaf0f7;
+  border-radius: 8px;
+  background-color: #eaf0f7;
+  color: #4f555a;
+}
+
+#ddi {
+  width: 20px;
+}
+
+#ddd {
+  width: 40px;
 }
 
 @media (min-width: 47.9em) {
