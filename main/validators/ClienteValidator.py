@@ -93,7 +93,7 @@ class ClienteValidator:
         if (celular[0] != PRIMEIRO_DIGITO_CEL): return {'status': False, 'msg': "O primeiro dígito do celular deve ser " + PRIMEIRO_DIGITO_CEL}
         
         #tamanho 9 dígitos, modelo: 98844332211, '55' adicionado no back-end
-        if(len(celular) != QTD_DIG_CEL ): return {'status': False, 'msg': "O celuar deve conter " + str(QTD_DIG_CEL) + " dígitos"}
+        if(len(celular) != QTD_DIG_CEL ): return {'status': False, 'msg': "O celular deve conter " + str(QTD_DIG_CEL) + " dígitos"}
         #checa se celular já existe no banco
         if(clienteService.celularJaExiste() > 0): return {'status': False, 'msg': "Celular já cadastrado!"}
         

@@ -1,37 +1,11 @@
-<!DOCTYPE html>
-<head>
-    <title>Alerta do Tempo</title>
-</head>
-<body id="body">
-    <h1>Olha esse Design</h1>
-    <form action="" method="post" style="display:inline-grid;" id="formCadastro">
-        {% csrf_token %}
-        <label for="nome">Nome: </label><input type="text" id="nome" name="nome"/>
-        <label for="nome">DDI: </label><input type="text" id="ddi" name="ddi" value="55" readonly style="color: lightslategray;"/>
-        <label for="nome">DDD: </label><input type="text" id="ddd" name="ddd"/>
-        <label for="celular">Celular: </label><input type="text" id="celular" name="celular"/>
-        <label for="senha">Senha: </label><input type="password" id="senha" name="senha"/>
-        <label for="estado">Estado: </label>
-        <select name="estado" id="estado">
-            {% for estado in estados %}
-            <option value="{{ estado.id }}">{{ estado.sigla }}</option>
-            {% endfor %}
-        </select>
-        <select name="municipio" id="municipio"></select>
-        <br>
-        <input type="submit" value="Enviar">
-    </form>
-</body>
-
-<script>
+window.addEventListener("load", function() {
     
-    window.onload = function(ev){
-        //Carrega DropDown de Munícipio assim que carrega a página
-        populaMuncipio();
-    }
+    //Carrega DropDown de Munícipio assim que carrega a página
+    populaMuncipio();
+
     //Eventos
     //Submit do formulário
-    document.getElementById("formCadastro").addEventListener("submit", submitForm);
+    document.getElementById("form_cadastro").addEventListener("submit", submitForm);
     //OnChange do Estado
     document.getElementById("estado").addEventListener("change", populaMuncipio);
 
@@ -44,36 +18,33 @@
         event.preventDefault();
         
         let xhr = new XMLHttpRequest();
-        var url = "{% url 'clienteCadastra' %}";
+        var url = URL_SUBMIT_FORM;
 
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Accept", 'application/x-www-form-urlencoded');
         xhr.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded');
         xhr.setRequestHeader('X-CSRF-Token', csrf_token);
 
-        xhr.onload = () => respostaRequisicao(xhr.responseText);
-
+        xhr.onload = () => respostaSubmitForm(xhr.responseText);
         let data = new URLSearchParams(new FormData(event.target)).toString();
-
         xhr.send(data);
     };
 
     //Resposta para inserção do cadastro
-    function respostaRequisicao(respostaJSON){
+    function respostaSubmitForm(respostaJSON){
         var resposta = JSON.parse(respostaJSON);
         if(resposta['status'] == true){
-            document.getElementById("formCadastro").reset();
+            document.getElementById("form_cadastro").reset();
         }
-        
         alert(resposta['msg']);
-       
     }
 
 
-    function populaMuncipio(event){
+    function populaMuncipio(){
         
         let xhr = new XMLHttpRequest();
-        var url = "{% url 'loadCidadesByEstado' %}";
+        var url = URL_LOAD_MUNICIPIOS;
+        console.log(url)
 
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Accept", 'application/json');
@@ -99,5 +70,10 @@
             }
         }
     }
-</script>
-</html>
+
+
+
+
+
+
+});
