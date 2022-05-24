@@ -17,10 +17,12 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.urls import path
 from main.controllers.ClienteController import ClienteController
+from main.controllers.HomeController import HomeController
 from django.conf import settings
 
 
 urlpatterns = [
+    path('', HomeController.as_view(), name='homeIndex'),
     path('cadastrar/', ClienteController.as_view(), name='cadastraIndex'),
     path('cadastrar/insere', ClienteController.cadastra, name='cadastrar'),
     path('cadastrar/loadCidadesByEstado', ClienteController.loadCidadesByEstado, name='loadCidadesByEstado'),
