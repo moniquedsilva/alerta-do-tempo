@@ -55,9 +55,15 @@
 
 .login__titulo {
     margin: 0;
+}
+
+.login__titulo a {
+    margin: 0;
     font-family: var(--poppins);
     font-weight: 700;
     font-size: 2.1rem;
+    color: #212121;
+    text-decoration: none;
 }
 
 .login__paragrafo {
@@ -88,24 +94,24 @@
     font-size: 1.15rem;
     font-weight: 700;
     color: #fff;
-    background-color: #4461f2;
+    background-color: #0028f1;
     cursor: pointer;
     transition: background-color 0.3s ease-in;
 }
 
 .login__button:hover {
-    background-color: #0028f1;
+    background-color: #0023d2;
 }
 
 .login__form a {
     text-decoration: none;
     font-weight: 700;
-    color: #4461f2;
+    color: #0028f1;
     transition: color 0.3s ease-in;
 }
 
 .login__form a:hover {
-    color: #0028f1;
+    color: #0023d2;
 }
 
 .login__form p {
@@ -114,6 +120,7 @@
 
 .login__input {
     padding: 16px 20px;
+    padding-right: 43px;
     border: transparent;
     border-radius: 8px;
     background-color: #eaf0f7;
@@ -156,7 +163,7 @@
 }
 
 #ddd {
-    width: 40px;
+    width: 50px;
 }
 
 input:required:focus:valid {
@@ -178,7 +185,7 @@ input:required:focus:invalid {
         font-size: 1rem;
     }
 
-    .login__titulo {
+    .login__titulo a {
         font-size: 2.6rem;
     }
 
