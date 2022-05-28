@@ -13,13 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import include, path
+
+from django.conf import settings
+from django.conf.urls.static import static
+from django.urls import path
+
 from main.controllers.ClienteController import ClienteController
+from main.controllers.HomeController import HomeController
+from main.controllers.LoginController import LoginController
 
 urlpatterns = [
-    path('cliente/', ClienteController.as_view(), name='clienteIndex'),
-    path('cliente/cadastra', ClienteController.cadastra, name='clienteCadastra'),
-    path('cliente/clientes', ClienteController.findAll, name='findAll'),
-    path('cliente/loadCidadesByEstado', ClienteController.loadCidadesByEstado, name='loadCidadesByEstado')
-]
+    path('', HomeController.as_view(), name='homeIndex'),
+    path('cadastrar/', ClienteController.as_view(), name='cadastraIndex'),
+    path('cadastrar/insere', ClienteController.cadastra, name='cadastrar'),
+    path('cadastrar/loadCidadesByEstado',
+         ClienteController.loadCidadesByEstado, name='loadCidadesByEstado'),
+    path('login/', LoginController.as_view(), name='LoginIndex'),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

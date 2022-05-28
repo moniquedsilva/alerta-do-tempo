@@ -4,3 +4,5 @@ pymongo==4.1.1
 pytz==2022.1
 sqlparse==0.4.2
 typing-extensions==4.2.0
+pymongo==4.1.1
+python-dotenv==0.20.0
