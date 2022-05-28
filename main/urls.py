@@ -20,6 +20,7 @@ from django.urls import path
 
 from main.controllers.ClienteController import ClienteController
 from main.controllers.HomeController import HomeController
+from main.controllers.LoginController import LoginController
 
 urlpatterns = [
     path('', HomeController.as_view(), name='homeIndex'),
@@ -27,4 +28,5 @@ urlpatterns = [
     path('cadastrar/insere', ClienteController.cadastra, name='cadastrar'),
     path('cadastrar/loadCidadesByEstado',
          ClienteController.loadCidadesByEstado, name='loadCidadesByEstado'),
+    path('login/', LoginController.as_view(), name='LoginIndex'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
