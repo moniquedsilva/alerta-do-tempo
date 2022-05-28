@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,77 +11,60 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
     <title>Alerta do Tempo | Cadastro</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <main>
-      <section class="cadastro">
-        <div class="cadastro__imagem"></div>
-        <div class="cadastro__area">
-          <h1 class="cadastro__titulo">Alerta do Tempo</h1>
-          <p class="cadastro__paragrafo">
-            Faça seu cadastro para ter acesso a funcionalidades exclusivas
-          </p>
-          <form action="" id="form_cadastro" class="cadastro__form">
-            {% csrf_token %}
-            <label for="nome">Nome</label>
-            <input
-              class="cadastro__input"
-              type="text"
-              name="nome"
-              placeholder="Nome"
-              required
-            />
-            <label for="senha">Senha</label>
-            <input
-              class="cadastro__input"
-              type="password"
-              name="senha"
-              placeholder="Senha "
-            />
-            <div class="cadastro__telefone">
-              <label for="ddi">DDI: </label
-              ><input type="text" id="ddi" name="ddi" value="55" readonly />
-              <label for="ddd">DDD: </label>
-              <input type="text" id="ddd" name="ddd" placeholder="DDD" />
-              <label for="celular">Celular</label>
-              <input
-                type="tel"
-                name="celular"
-                placeholder="Celular"
-                pattern="[0-9]{9}"
-                maxlength="12"
-                title="Insira no formato correto Ex: 978654321"
-                required
-              />
+        <section class="cadastro">
+            <div class="cadastro__imagem"></div>
+            <div class="cadastro__area">
+                <h1 class="cadastro__titulo">Alerta do Tempo</h1>
+                <p class="cadastro__paragrafo">
+                    Faça seu cadastro para ter acesso a funcionalidades exclusivas
+                </p>
+                <form action="" id="form_cadastro" class="cadastro__form">
+                    {% csrf_token %}
+                    <label for="nome">Nome</label>
+                    <input class="cadastro__input" type="text" name="nome" placeholder="Nome" required />
+                    <label for="senha">Senha</label>
+                    <input class="cadastro__input" type="password" name="senha" placeholder="Senha " />
+                    <div class="cadastro__telefone">
+                        <label for="ddi">DDI: </label>
+                        <input type="text" id="ddi" name="ddi" value="55" readonly />
+                        <label for="ddd">DDD: </label>
+                        <input type="text" id="ddd" name="ddd" placeholder="DDD" />
+                        <label for="celular">Celular</label>
+                        <input type="tel" name="celular" placeholder="Celular" pattern="[0-9]{9}" maxlength="12"
+                            title="Insira no formato correto Ex: 978654321" required />
+                    </div>
+                    <div class="cadastro__dropdown">
+                        <label for="estado">Estado</label>
+                        <select id="estado" class="cadastro__select" name="estado">
+                            {% for estado in estados %}
+                            <option value="{{ estado.id }}">{{ estado.sigla }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="municipio">Municipio</label>
+                        <select id="municipio" class="cadastro__select" name="municipio">
+                            <option value="none" selected disabled hidden>Municipio</option>
+                        </select>
+                    </div>
+                    <button class="cadastro__button">Continuar</button>
+                    <p class="cadastro__lembrete">
+                        Já tem uma conta? <a href="#">Entrar</a>
+                    </p>
+                </form>
             </div>
-            <div class="cadastro__dropdown">
-              <label for="estado">Estado</label>
-              <select id="estado" class="cadastro__select" name="estado">
-                {% for estado in estados %}
-                <option value="{{ estado.id }}">{{ estado.sigla }}</option>
-                {% endfor %}
-              </select>
-              <label for="municipio">Municipio</label>
-              <select id="municipio" class="cadastro__select" name="municipio">
-                <option value="none" selected disabled hidden>Municipio</option>
-              </select>
-            </div>
-            <button class="cadastro__button">Continuar</button>
-            <p class="cadastro__lembrete">
-              Já tem uma conta? <a href="#">Entrar</a>
-            </p>
-          </form>
-        </div>
-      </section>
+        </section>
     </main>
-  </body>
-  <script type="text/javascript">
+</body>
+<script type="text/javascript">
     const URL_SUBMIT_FORM = "{% url 'cadastrar' %}"
     const URL_LOAD_MUNICIPIOS = "{% url 'loadCidadesByEstado' %}"
-  </script>
-  <script type="text/javascript" src="{% static 'js/cadastro.js' %}"></script>
+</script>
+<script type="text/javascript" src="{% static 'js/cadastro.js' %}"></script>
+
 </html>
