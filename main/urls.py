@@ -20,5 +20,6 @@ from main.controllers.ClienteController import ClienteController
 urlpatterns = [
     path('cliente/', ClienteController.as_view(), name='clienteIndex'),
     path('cliente/cadastra', ClienteController.cadastra, name='clienteCadastra'),
+    path('cliente/clientes', ClienteController.findAll, name='findAll'),
     path('cliente/loadCidadesByEstado', ClienteController.loadCidadesByEstado, name='loadCidadesByEstado')
 ]
