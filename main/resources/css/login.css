@@ -1,0 +1,200 @@
+:root {
+    --poppins: "Poppins", sans-serif;
+    --montserrat: "Montserrat", sans-serif;
+}
+
+.login {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+.login__imagem {
+    display: none;
+}
+
+@media (min-width: 47.9em) {
+    .login__imagem {
+        display: block;
+        width: 50%;
+        background-image: url("../assets/images/homem-celular.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 90%;
+        background-color: #99ceff;
+        align-self: stretch;
+    }
+}
+
+@media (min-width: 90em) {
+    .login__imagem {
+        background-size: 650px;
+    }
+}
+
+@media (min-width: 125em) {
+    .login__imagem {
+        background-position: right;
+    }
+}
+
+.login__area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2rem;
+    font-family: var(--montserrat);
+    font-size: 0.875rem;
+    color: #212121;
+    text-align: center;
+    background-color: #f6f6f6;
+}
+
+.login__titulo {
+    margin: 0;
+    font-family: var(--poppins);
+    font-weight: 700;
+    font-size: 2.1rem;
+}
+
+.login__paragrafo {
+    max-width: 400px;
+    font-family: var(--montserrat);
+    font-size: 0.875rem;
+    line-height: 140%;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.login__form label {
+    display: none;
+}
+
+.login__button {
+    width: 100%;
+    margin-top: 50px;
+    padding: 14px 0;
+    border: transparent;
+    border-radius: 8px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    background-color: #4461f2;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in;
+}
+
+.login__button:hover {
+    background-color: #0028f1;
+}
+
+.login__form a {
+    text-decoration: none;
+    font-weight: 700;
+    color: #4461f2;
+    transition: color 0.3s ease-in;
+}
+
+.login__form a:hover {
+    color: #0028f1;
+}
+
+.login__form p {
+    margin: 0;
+}
+
+.login__input {
+    padding: 16px 20px;
+    border: transparent;
+    border-radius: 8px;
+    background-color: #eaf0f7;
+    outline: transparent;
+}
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #4f555a;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #4f555a !important;
+}
+
+.login__lembrete {
+    text-align: right;
+}
+
+.login__telefone {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.login__telefone input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 6px solid #eaf0f7;
+    border-radius: 8px;
+    background-color: #eaf0f7;
+    color: #4f555a;
+    outline: transparent;
+}
+
+#ddi {
+    width: 20px;
+}
+
+#ddd {
+    width: 40px;
+}
+
+input:required:focus:valid {
+    background: url("../assets/icons/alert-check.svg") no-repeat 95% 50% #eaf0f7;
+    background-size: 18px;
+    outline: 2px solid #04cf00;
+}
+
+input:required:focus:invalid {
+    background: url("../assets/icons/alert-triangle.svg") no-repeat 95% 50%
+        #eaf0f7;
+    background-size: 20px;
+    outline: 2px solid #fa1b1b;
+}
+
+@media (min-width: 47.9em) {
+    .login__area {
+        width: 50%;
+        font-size: 1rem;
+    }
+
+    .login__titulo {
+        font-size: 2.6rem;
+    }
+
+    .login__paragrafo {
+        font-size: 1rem;
+        max-width: 400px;
+    }
+
+    .login__form {
+        max-width: 400px;
+    }
+}
+
+@media (min-width: 125em) {
+    .login__area {
+        align-items: flex-start;
+        padding: 0 0 0 120px;
+    }
+}

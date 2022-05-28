@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <title>Alerta do Tempo | Login</title>
+</head>
+
+<body>
+    <main>
+        <section class="login">
+            <div class="login__imagem"></div>
+            <div class="login__area">
+                <h1 class="login__titulo">Alerta do Tempo</h1>
+                <p class="login__paragrafo">
+                    Faça login para continuar
+                </p>
+                <form action="" id="form_login" class="login__form">
+                    {% csrf_token %}
+                    <label for="nome">Nome</label>
+                    <input class="login__input" type="text" name="nome" placeholder="Nome" pattern="[A-Za-z]+"
+                        minlength="3" title="Insira um nome válido" required />
+                    <div class="login__telefone">
+                        <label for="ddi">DDI: </label>
+                        <input type="text" id="ddi" name="ddi" value="55" readonly />
+                        <label for="ddd">DDD: </label>
+                        <input type="text" id="ddd" name="ddd" placeholder="DDD" pattern="[0-9]{9}" maxlength="2"
+                            title="Insira DDD no formato correto Ex: 71" required />
+                        <label for="celular">Celular</label>
+                        <input type="tel" name="celular" placeholder="Celular" pattern="[0-9]{9}" maxlength="12"
+                            title="Insira no formato correto Ex: 978654321" required />
+                    </div>
+                    <button class="login__button">Continuar</button>
+                    <p class="login__lembrete">
+                        Ainda não tem uma conta? <a href="/cadastrar">Cadastre-se</a>
+                    </p>
+                </form>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
