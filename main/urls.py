@@ -20,11 +20,12 @@ from django.urls import path
 
 from main.controllers.ClienteController import ClienteController
 from main.controllers.HomeController import HomeController
+import main.controllers.ClienteController as Cliente
 
 urlpatterns = [
     path('', HomeController.as_view(), name='homeIndex'),
     path('cadastrar/', ClienteController.as_view(), name='cadastraIndex'),
-    path('cadastrar/insere', ClienteController.cadastra, name='cadastrar'),
+    path('cadastrar/insere', Cliente.cadastra, name='cadastrar'),
     path('cadastrar/loadCidadesByEstado',
-         ClienteController.loadCidadesByEstado, name='loadCidadesByEstado'),
+         Cliente.loadCidadesByEstado, name='loadCidadesByEstado'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

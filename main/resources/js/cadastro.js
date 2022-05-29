@@ -1,7 +1,11 @@
 window.addEventListener("load", function () {
+    
+     //Token csrf
+     let tokens = document.getElementsByName("csrfmiddlewaretoken");
+     let csrf_token = tokens[0].getAttribute("value");
+
     //Carrega DropDown de Munícipio assim que carrega a página
     populaMuncipio();
-
     //Eventos
     //Submit do formulário
     document
@@ -11,9 +15,6 @@ window.addEventListener("load", function () {
     document
         .getElementById("estado")
         .addEventListener("change", populaMuncipio);
-
-    let tokens = document.getElementsByName("csrfmiddlewaretoken");
-    let csrf_token = tokens[0].getAttribute("value");
 
     //Submit do formulário
     function submitForm(event) {
@@ -38,7 +39,7 @@ window.addEventListener("load", function () {
     //Resposta para inserção do cadastro
     function respostaSubmitForm(respostaJSON) {
         var resposta = JSON.parse(respostaJSON);
-        if (resposta["status"] == true) {
+        if (resposta["status"]) {
             document.getElementById("form_cadastro").reset();
         }
         alert(resposta["msg"]);
@@ -47,15 +48,22 @@ window.addEventListener("load", function () {
     function populaMuncipio() {
         let xhr = new XMLHttpRequest();
         var url = URL_LOAD_MUNICIPIOS;
-        console.log(url);
-
+        var array_csrf_token = document.cookie.split("="); 
+        var csrf_token_cookie = array_csrf_token[1];
+        
         xhr.open("POST", url, true);
-        xhr.setRequestHeader("Accept", "application/json");
-        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("Accept", "application/x-www-form-urlencoded");
+        xhr.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+        );
+        xhr.setRequestHeader("X-CSRF-Token", csrf_token);
 
         xhr.onload = () => respostaPopulaMunicipio(xhr.response);
-        let dados = { estado_id: document.getElementById("estado").value };
-        let data = JSON.stringify(dados);
+        let formData = new FormData();
+        formData.append('csrfmiddlewaretoken', csrf_token);
+        formData.append('estado_id', document.getElementById("estado").value)
+        let data = new URLSearchParams(formData).toString();
         xhr.send(data);
     }
 
@@ -63,9 +71,9 @@ window.addEventListener("load", function () {
         var dados = JSON.parse(dadosJSON);
         let select = document.getElementById("municipio");
         select.innerHTML = "";
-        for (d of dados["municipios"]) {
+        for (let d of dados["municipios"]) {
             var opt = document.createElement("option");
-            for (key in d) {
+            for (let key in d) {
                 opt.value = key;
                 opt.innerHTML = d[key];
                 select.appendChild(opt);

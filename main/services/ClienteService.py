@@ -15,19 +15,22 @@ class ClienteService:
         # hash senha, usar--> check_password(password, encoded) para checar no login
         self.cliente.senha = make_password(self.cliente.senha)
         # insere cliente
-        clienteDict = self.cliente.__dict__
-        insert_result = dbClientes.insert_one(clienteDict)
+        cliente_dict = self.cliente.__dict__
+        insert_result = dbClientes.insert_one(cliente_dict)
         return insert_result.acknowledged
 
     def busca(self):
+        """Consulta clientes"""
         pass
 
     def atualiza(self):
+        """Update clientes"""
         pass
 
     def deleta(self):
+        """Deleta clientes"""
         pass
 
-    def celularJaExiste(self):
+    def celular_existe(self):
         celular = self.cliente.celular
         return dbClientes.count_documents({"celular": celular})
