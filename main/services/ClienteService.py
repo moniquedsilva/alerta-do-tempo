@@ -20,7 +20,8 @@ class ClienteService:
         return insert_result.acknowledged
 
     def busca(self):
-        pass
+        return dbClientes.find({"nome" : self.cliente.nome, "campo2":  self.cliente.celular});
+        
 
     def atualiza(self):
         pass
