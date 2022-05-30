@@ -26,3 +26,9 @@ class LoginController(View):
         else:
             messages.error(request, 'Error')
             return redirect('login')
+
+
+    def logout_user(request):
+        logout(request)
+        messages.info(request, "You have successfully logged out.") 
+        return redirect('')

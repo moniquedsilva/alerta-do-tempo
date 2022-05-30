@@ -30,4 +30,5 @@ urlpatterns = [
          ClienteController.loadCidadesByEstado, name='loadCidadesByEstado'),
     path('login/', LoginController.as_view(), name='LoginIndex'),
     path('login/user', LoginController.login_user, name='login'),
+    path('logout', LoginController.logout_user, name='logout'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
