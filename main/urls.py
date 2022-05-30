@@ -29,4 +29,5 @@ urlpatterns = [
     path('cadastrar/loadCidadesByEstado',
          ClienteController.loadCidadesByEstado, name='loadCidadesByEstado'),
     path('login/', LoginController.as_view(), name='LoginIndex'),
+    path('login/user', LoginController.login_user, name='login'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
