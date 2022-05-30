@@ -3,27 +3,19 @@
     --montserrat: "Montserrat", sans-serif;
 }
 
-.cadastro {
+.login {
     display: flex;
     width: 100%;
     min-height: 100vh;
     overflow-y: auto;
 }
-.cadastro__titulo {
-    margin: 0;
-}
 
-.cadastro__titulo a {
-    color: #212121;
-    text-decoration: none;
-}
-
-.cadastro__imagem {
+.login__imagem {
     display: none;
 }
 
 @media (min-width: 47.9em) {
-    .cadastro__imagem {
+    .login__imagem {
         display: block;
         width: 50%;
         background-image: url("../assets/images/homem-celular.svg");
@@ -36,18 +28,18 @@
 }
 
 @media (min-width: 90em) {
-    .cadastro__imagem {
+    .login__imagem {
         background-size: 650px;
     }
 }
 
 @media (min-width: 125em) {
-    .cadastro__imagem {
+    .login__imagem {
         background-position: right;
     }
 }
 
-.cadastro__area {
+.login__area {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -61,23 +53,27 @@
     background-color: #f6f6f6;
 }
 
-.cadastro__titulo a {
+.login__titulo {
+    margin: 0;
+}
+
+.login__titulo a {
     margin: 0;
     font-family: var(--poppins);
     font-weight: 700;
     font-size: 2.1rem;
-    text-decoration: none;
     color: #212121;
+    text-decoration: none;
 }
 
-.cadastro__paragrafo {
+.login__paragrafo {
     max-width: 400px;
     font-family: var(--montserrat);
     font-size: 0.875rem;
     line-height: 140%;
 }
 
-.cadastro__form {
+.login__form {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
@@ -85,11 +81,11 @@
     margin-top: 50px;
 }
 
-.cadastro__form label {
+.login__form label {
     display: none;
 }
 
-.cadastro__button {
+.login__button {
     width: 100%;
     margin-top: 50px;
     padding: 14px 0;
@@ -100,29 +96,29 @@
     color: #fff;
     background-color: #0028f1;
     cursor: pointer;
-    transition: color 0.3s ease-in;
+    transition: background-color 0.3s ease-in;
 }
 
-.cadastro__button:hover {
+.login__button:hover {
     background-color: #0023d2;
 }
 
-.cadastro__form a {
+.login__form a {
     text-decoration: none;
     font-weight: 700;
     color: #0028f1;
     transition: color 0.3s ease-in;
 }
 
-.cadastro__form a:hover {
+.login__form a:hover {
     color: #0023d2;
 }
 
-.cadastro__form p {
+.login__form p {
     margin: 0;
 }
 
-.cadastro__input {
+.login__input {
     padding: 16px 20px;
     padding-right: 43px;
     border: transparent;
@@ -142,31 +138,17 @@
     color: #4f555a !important;
 }
 
-.cadastro__dropdown {
-    display: flex;
-    justify-content: space-between;
-}
-
-.cadastro__select {
-    width: 48%;
-    padding: 10px 14px;
-    border: 6px solid #eaf0f7;
-    border-radius: 8px;
-    background-color: #eaf0f7;
-    color: #4f555a;
-    outline: transparent;
-}
-
-.cadastro__lembrete {
+.login__lembrete {
     text-align: right;
 }
 
-.cadastro__telefone {
+.login__telefone {
     display: flex;
     justify-content: space-between;
     gap: 16px;
 }
-.cadastro__telefone input {
+
+.login__telefone input {
     width: 100%;
     padding: 10px 14px;
     border: 6px solid #eaf0f7;
@@ -198,28 +180,27 @@ input:required:focus:invalid {
 }
 
 @media (min-width: 47.9em) {
-    .cadastro__area {
+    .login__area {
         width: 50%;
         font-size: 1rem;
     }
 
-    .cadastro__titulo a {
+    .login__titulo a {
         font-size: 2.6rem;
-        text-decoration: none;
     }
 
-    .cadastro__paragrafo {
+    .login__paragrafo {
         font-size: 1rem;
         max-width: 400px;
     }
 
-    .cadastro__form {
+    .login__form {
         max-width: 400px;
     }
 }
 
 @media (min-width: 125em) {
-    .cadastro__area {
+    .login__area {
         align-items: flex-start;
         padding: 0 0 0 120px;
     }

@@ -18,14 +18,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
+import main.controllers.ClienteController as Cliente
 from main.controllers.ClienteController import ClienteController
 from main.controllers.HomeController import HomeController
-import main.controllers.ClienteController as Cliente
+from main.controllers.LoginController import LoginController
 
 urlpatterns = [
     path('', HomeController.as_view(), name='homeIndex'),
     path('cadastrar/', ClienteController.as_view(), name='cadastraIndex'),
     path('cadastrar/insere', Cliente.cadastra, name='cadastrar'),
-    path('cadastrar/loadCidadesByEstado',
-         Cliente.loadCidadesByEstado, name='loadCidadesByEstado'),
+    path('cadastrar/loadCidadesByEstado', Cliente.loadCidadesByEstado, name='loadCidadesByEstado'),
+    path('login/', LoginController.as_view(), name='LoginIndex'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
