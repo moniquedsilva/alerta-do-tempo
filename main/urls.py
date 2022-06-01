@@ -21,6 +21,7 @@ from django.urls import path
 from main.controllers.ClienteController import ClienteController
 from main.controllers.HomeController import HomeController
 from main.controllers.LoginController import LoginController
+from main.controllers.RequisicoesController import RequisicoesController
 
 urlpatterns = [
     path('', HomeController.as_view(), name='homeIndex'),
@@ -28,4 +29,5 @@ urlpatterns = [
     path('cadastrar/insere', ClienteController.as_view(), name='cadastrar'),
     path('cadastrar/loadCidadesByEstado', ClienteController.as_view(), name='loadCidadesByEstado'),
     path('login/', LoginController.as_view(), name='LoginIndex'),
+    path('requisicao/', RequisicoesController.as_view(), name='RequisicaoLog'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

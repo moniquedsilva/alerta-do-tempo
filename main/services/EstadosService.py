@@ -8,3 +8,6 @@ class EstadosService:
 
     def estado_id_existe(self, estado_id):
         return dbEstados.count_documents({"id": estado_id})
+    
+    def busca_estado_by_id(self, id):
+        return dbEstados.find_one({'id': id}, projection={'_id': False})
