@@ -16,6 +16,7 @@ try:
     dbClientes: pymongo.collection.Collection = db["Clientes"]
     dbMunicipios: pymongo.collection.Collection = db["Municipios"]
     dbEstados: pymongo.collection.Collection = db["Estados"]
+    dbCondicoesTempo: pymongo.collection.Collection = db["CondicoesTempo"]
     status_conexao = True
 except Exception as e:
     status_conexao = False
