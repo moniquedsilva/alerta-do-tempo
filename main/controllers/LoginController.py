@@ -16,16 +16,19 @@ class LoginController(View):
 
     def login_user(request):
         if request.method == 'POST':
-            nome = request.POST['nome']
             celular = request.POST['celular']
-            user = authenticate(request, username=nome, password=celular)
+            senha = request.POST['senha']
+
+            user = authenticate(request, celular=celular, senha=senha)
             if user is not None:
                 login(request, user)
-                return HttpResponse('Funcionou')
+                return render(request, 'dashboard.html')
             else:
                 return HttpResponse('Não funcionou')
 
     def logout_user(request):
+        if(request.session['_auth_user_id'] == 'None'):
+            request.session['_auth_user_id'] = None
         logout(request)
         messages.info(request, "You have successfully logged out.")
-        return redirect('')
+        return redirect('homeIndex')

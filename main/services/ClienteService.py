@@ -1,14 +1,10 @@
-import json
-
 from django.contrib.auth.hashers import make_password
-
 from main.models.Cliente import Cliente
 from main.utils import dbClientes
 
+class ClienteService():
 
-class ClienteService:
-
-    def __init__(self, cliente: Cliente):
+    def __init__(self, cliente: Cliente = None):
         self.cliente = cliente
 
     def cadastra(self):
@@ -19,8 +15,8 @@ class ClienteService:
         insert_result = dbClientes.insert_one(clienteDict)
         return insert_result.acknowledged
 
-    def busca(self):
-        return dbClientes.find({"nome": self.cliente.nome, "celular":  self.cliente.celular})
+    def busca(self, celular):
+        return dbClientes.find_one({'celular':  celular}, projection={'_id': False})
 
     def atualiza(self):
         pass

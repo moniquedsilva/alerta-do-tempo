@@ -80,7 +80,8 @@ WSGI_APPLICATION = 'main.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': ':memory:',
+        #'NAME': BASE_DIR / 'db.sqlite3'
     }
 }
 
@@ -103,6 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = ['main.auth_backend.CustomBackend.CustomBackend']
+# AUTH_USER_MODEL = 'main.Cliente'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -125,6 +128,16 @@ STATIC_URL = 'main/resources/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'main/resources/'),
 )
+
+#Cache configuraration, specifically for login purposes
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+
 
 
 # Default primary key field type
