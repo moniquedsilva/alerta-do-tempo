@@ -1,8 +1,7 @@
 window.addEventListener("load", function () {
-    
-     //Token csrf
-     let tokens = document.getElementsByName("csrfmiddlewaretoken");
-     let csrf_token = tokens[0].getAttribute("value");
+    //Token csrf
+    let tokens = document.getElementsByName("csrfmiddlewaretoken");
+    let csrf_token = tokens[0].getAttribute("value");
 
     //Carrega DropDown de Munícipio assim que carrega a página
     populaMuncipio();
@@ -21,7 +20,7 @@ window.addEventListener("load", function () {
         event.preventDefault();
 
         let xhr = new XMLHttpRequest();
-        var url = URL_SUBMIT_FORM;
+        let url = URL_SUBMIT_FORM;
 
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Accept", "application/x-www-form-urlencoded");
@@ -38,7 +37,7 @@ window.addEventListener("load", function () {
 
     //Resposta para inserção do cadastro
     function respostaSubmitForm(respostaJSON) {
-        var resposta = JSON.parse(respostaJSON);
+        let resposta = JSON.parse(respostaJSON);
         if (resposta["status"]) {
             document.getElementById("form_cadastro").reset();
         }
@@ -47,10 +46,8 @@ window.addEventListener("load", function () {
 
     function populaMuncipio() {
         let xhr = new XMLHttpRequest();
-        var url = URL_LOAD_MUNICIPIOS;
-        var array_csrf_token = document.cookie.split("="); 
-        var csrf_token_cookie = array_csrf_token[1];
-        
+        let url = URL_LOAD_MUNICIPIOS;
+
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Accept", "application/x-www-form-urlencoded");
         xhr.setRequestHeader(
@@ -61,18 +58,18 @@ window.addEventListener("load", function () {
 
         xhr.onload = () => respostaPopulaMunicipio(xhr.response);
         let formData = new FormData();
-        formData.append('csrfmiddlewaretoken', csrf_token);
-        formData.append('estado_id', document.getElementById("estado").value)
+        formData.append("csrfmiddlewaretoken", csrf_token);
+        formData.append("estado_id", document.getElementById("estado").value);
         let data = new URLSearchParams(formData).toString();
         xhr.send(data);
     }
 
     function respostaPopulaMunicipio(dadosJSON) {
-        var dados = JSON.parse(dadosJSON);
+        let dados = JSON.parse(dadosJSON);
         let select = document.getElementById("municipio");
         select.innerHTML = "";
         for (let d of dados["municipios"]) {
-            var opt = document.createElement("option");
+            let opt = document.createElement("option");
             for (let key in d) {
                 opt.value = key;
                 opt.innerHTML = d[key];
