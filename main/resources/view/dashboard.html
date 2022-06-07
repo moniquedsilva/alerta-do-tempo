@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <title>Dashboard | Alerta do Tempo</title>
+</head>
+
+<body>
+    <div class="dashboard">
+        <header class="dashboard__header">
+            <a href={% url 'homeIndex' %} class="dasboard__title">Alerta do Tempo</a>
+            <a href="{% url 'logout' %}" class="dashboard__logout">Sair</a>
+        </header>
+        <main class="dashboard__main">
+            <section class="dashboard__content">
+                <h1 class="dashboard__content-title">Bem vindo(a)</h1>
+                <div class="dashboard__content-imgs">
+                    <img src="{% static 'assets/images/sol-nublado.png'  %}" alt="Nublado" />
+                </div>
+                <button class="dashboard__content-btn">Editar perfil</button>
+            </section>
+        </main>
+
+    </div>
+</body>
+
+</html>

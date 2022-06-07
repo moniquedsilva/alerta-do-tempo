@@ -1,27 +1,30 @@
-import json
-
 from django.contrib.auth.hashers import make_password
 
 from main.models.Cliente import Cliente
 from main.utils import dbClientes
 
 
-class ClienteService:
+class ClienteService():
 
-    def __init__(self, cliente: Cliente):
+    def __init__(self, cliente: Cliente = None):
         self.cliente = cliente
 
     def cadastra(self):
         # hash senha, usar--> check_password(password, encoded) para checar no login
         self.cliente.senha = make_password(self.cliente.senha)
         # insere cliente
-        cliente_dict = self.cliente.__dict__
-        insert_result = dbClientes.insert_one(cliente_dict)
+        clienteDict = {'nome': self.cliente.nome,
+                       'ddi': self.cliente.ddi,
+                       'ddd': self.cliente.ddd,
+                       'celular': self.cliente.celular,
+                       'senha': self.cliente.senha,
+                       'municipio_id': self.cliente.municipio_id,
+                       'estado_id': self.cliente.estado_id}
+        insert_result = dbClientes.insert_one(clienteDict)
         return insert_result.acknowledged
 
-    def busca(self):
-        """Consulta clientes"""
-        pass
+    def busca(self, celular):
+        return dbClientes.find_one({'celular':  celular}, projection={'_id': False})
 
     def atualiza(self):
         """Update clientes"""

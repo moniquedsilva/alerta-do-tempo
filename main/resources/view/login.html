@@ -27,11 +27,8 @@
                 <p class="login__paragrafo">
                     Faça login para continuar
                 </p>
-                <form action="" id="form_login" class="login__form">
+                <form action="{% url 'login' %}" method="post" id="form_login" class="login__form">
                     {% csrf_token %}
-                    <label for="nome">Nome</label>
-                    <input class="login__input" type="text" name="nome" placeholder="Nome" pattern="[A-Za-z]+"
-                        minlength="3" title="Insira um nome válido" required />
                     <div class="login__telefone">
                         <label for="ddi">DDI: </label>
                         <input type="text" id="ddi" name="ddi" value="55" readonly />
@@ -39,10 +36,12 @@
                         <input type="text" id="ddd" name="ddd" placeholder="DDD" pattern="[0-9]{2}"
                             title="Insira DDD no formato correto Ex: 71" required />
                         <label for="celular">Celular</label>
-                        <input type="tel" name="celular" placeholder="Celular" pattern="[0-9]{9}" maxlength="12"
-                            title="Insira no formato correto Ex: 978654321" required />
+                        <input type="tel" id="celular" name="celular" placeholder="Celular" pattern="[0-9]{9}"
+                            maxlength="12" title="Insira no formato correto Ex: 978654321" required />
                     </div>
-                    <button class="login__button">Continuar</button>
+                    <label for="senha">Senha</label>
+                    <input class="login__input" type="password" name="senha" placeholder="Senha" required />
+                    <input type="submit" class="login__button" value="Continuar" />
                     <p class="login__lembrete">
                         Ainda não tem uma conta? <a href="/cadastrar">Cadastre-se</a>
                     </p>
