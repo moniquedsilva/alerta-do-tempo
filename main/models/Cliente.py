@@ -17,5 +17,4 @@ class Cliente(AbstractUser):
     def groups():
         pass
     def user_permissions():
-        pass
-        
+        pass       
