@@ -11,7 +11,13 @@ class ClienteService():
         # hash senha, usar--> check_password(password, encoded) para checar no login
         self.cliente.senha = make_password(self.cliente.senha)
         # insere cliente
-        clienteDict = self.cliente.__dict__
+        clienteDict = {'nome': self.cliente.nome,
+                        'ddi': self.cliente.ddi,
+                        'ddd': self.cliente.ddd,
+                        'celular': self.cliente.celular,
+                        'senha': self.cliente.senha,
+                        'municipio_id': self.cliente.municipio_id,
+                        'estado_id': self.cliente.estado_id }
         insert_result = dbClientes.insert_one(clienteDict)
         return insert_result.acknowledged
 

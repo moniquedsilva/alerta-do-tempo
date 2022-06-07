@@ -2,19 +2,18 @@ from django.contrib.auth.models import User
 from django.contrib.auth.backends import BaseBackend
 from main.services.ClienteService import ClienteService
 from main.models.Cliente import Cliente
-from django.contrib.auth.hashers import check_password
+from django.contrib.auth.hashers import check_password, make_password
 
 class CustomBackend(BaseBackend):
     def authenticate(self, request, celular=None, senha=None):
         try:
             user = self.get_user(celular)
-            password_valid = check_password(user.senha, senha)
-            if(password_valid):
-                return user
+            password_valid = check_password(senha, user.senha)
+            if(password_valid): return user
+            else: return None
         except Exception:
-            user = None
+            return None
          
-        return user
         
     def get_user(self, celular):
         cliente_service = ClienteService()
