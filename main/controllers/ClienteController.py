@@ -4,6 +4,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
 
 from main.models.Cliente import Cliente
 from main.services.ClienteService import ClienteService
@@ -14,14 +15,21 @@ from main.validators.ClienteValidator import ClienteValidator
 
 class ClienteController(View):
 
-    def get(self, request, *args, **kwargs):
-        estadosService = EstadosService()
-        estados = estadosService.buscaSiglasEstados()
+    def get(self, request):
+        estados_service = EstadosService()
+        estados = estados_service.busca_siglas_estados()
         return render(request, 'cadastro.html', {'estados': estados})
+    
+    #Todos os métodos via post
+    def post(self, request):
+        path_name = request.resolver_match.url_name
+        if(path_name == 'loadCidadesByEstado'):
+            return self.loadCidadesByEstado(request)
+        if(path_name == 'cadastrar'):
+            return self.cadastra(request)
 
-    # Cadastro via POST
-    def cadastra(request):
-
+    # Cadastro
+    def cadastra(self, request):
         # Recebe dados
         nome = request.POST['nome']
         ddi = request.POST['ddi']
@@ -33,33 +41,31 @@ class ClienteController(View):
 
         # Cria uma instância de Cliente
         cliente = Cliente(nome, ddi, ddd, celular,
-                          senha, municipio_id, estado_id)
+                            senha, municipio_id, estado_id)
         # Cria serviço
-        clienteService = ClienteService(cliente)
-        estadosService = EstadosService()
-        municipiosService = MunicipiosService()
+        cliente_service = ClienteService(cliente)
+        estados_service = EstadosService()
+        municipios_service = MunicipiosService()
 
         # Validação
-        clienteValidator = ClienteValidator(
-            cliente, clienteService, estadosService, municipiosService)
-        resposta_validacao = clienteValidator.valida()
+        cliente_validator = ClienteValidator(
+            cliente, cliente_service, estados_service, municipios_service)
+        resposta_validacao = cliente_validator.valida()
         if(not resposta_validacao['status']):
             return JsonResponse(resposta_validacao)
 
         # Cadastro
-        if(not clienteService.cadastra()):
+        if(not cliente_service.cadastra()):
             return JsonResponse({"status": False, 'msg': "Erro de cadastro, por favor tente mais tarde!"})
 
         # Se tudo ok, retorna mensagem de sucesso
         return JsonResponse({"status": True, 'msg': "Cadastro realizado com sucesso!"})
 
-    @csrf_exempt
-    def loadCidadesByEstado(request):
-        stringIdEstado = str(request.body, 'utf-8')
-        jsonIdEstado = json.loads(stringIdEstado)
+    #Carrega drop-down de cidades
+    def loadCidadesByEstado(self, request):
+        estado_id = request.POST['estado_id']
+        municipios_service = MunicipiosService()
+        municipios = municipios_service.busca_cidades_by_estado({"estado_id": estado_id})
+        municipios_json = [{m['id']: m['nome']} for m in municipios]
 
-        municipiosService = MunicipiosService()
-        municipios = municipiosService.buscaCidadesByEstado(jsonIdEstado)
-        municipiosJson = [{m['id']: m['nome']} for m in municipios]
-
-        return JsonResponse({'municipios': municipiosJson})
+        return JsonResponse({'municipios': municipios_json})

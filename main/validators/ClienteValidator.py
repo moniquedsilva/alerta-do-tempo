@@ -23,11 +23,11 @@ PRIMEIRO_DIGITO_CEL = "9"
 
 class ClienteValidator:
 
-    def __init__(self, cliente: Cliente, clienteService: ClienteService, estadosService: EstadosService, municipiosService: MunicipiosService):
+    def __init__(self, cliente: Cliente, cliente_service: ClienteService, estados_service: EstadosService, municipios_service: MunicipiosService):
         self.cliente = cliente
-        self.clienteService = clienteService
-        self.municipiosService = municipiosService
-        self.estadosService = estadosService
+        self.cliente_service = cliente_service
+        self.municipios_service = municipios_service
+        self.estados_service = estados_service
 
     def valida(self):
         # Chama funções de validação para cada campo
@@ -65,7 +65,7 @@ class ClienteValidator:
     def valida_nome(self):
         nome = self.cliente.nome
         # checa vazio
-        if(self.estaVazio(nome)):
+        if(self.esta_vazio(nome)):
             return {'status': False, 'msg': "Digite um nome!"}
         # caracteres permitidos: letras(incluindo acentuadas), espaço, vírgula, ponto, aspas, hífen
         regex_pattern = _lazy_re_compile(
@@ -80,7 +80,7 @@ class ClienteValidator:
     def valida_ddi(self):
         ddi = self.cliente.ddi
         # checa vazio
-        if(self.estaVazio(ddi)):
+        if(self.esta_vazio(ddi)):
             return {'status': False, 'msg': "Digite um ddi!"}
         # Único valor permitido 55
         if(ddi != DDI_BRASIL):
@@ -90,7 +90,7 @@ class ClienteValidator:
     def valida_ddd(self):
         ddd = self.cliente.ddd
         # checa vazio
-        if(self.estaVazio(ddd)):
+        if(self.esta_vazio(ddd)):
             return {'status': False, 'msg': "Digite um ddd!"}
         # checa qtd de dígitos
         if(len(ddd) != QTD_DIG_DDD):
@@ -104,9 +104,9 @@ class ClienteValidator:
 
     def valida_celular(self):
         celular = self.cliente.celular
-        clienteService = self.clienteService
+        cliente_service = self.cliente_service
         # checa vazio
-        if(self.estaVazio(celular)):
+        if(self.esta_vazio(celular)):
             return {'status': False, 'msg': "Digite um celular!"}
         # Checa se dígitos são todos numérios
         regex_pattern = _lazy_re_compile(r"^[0-9]+$")
@@ -122,7 +122,7 @@ class ClienteValidator:
         if(len(celular) != QTD_DIG_CEL):
             return {'status': False, 'msg': "O celular deve conter " + str(QTD_DIG_CEL) + " dígitos"}
         # checa se celular já existe no banco
-        if(clienteService.celularJaExiste() > 0):
+        if(cliente_service.celular_existe() > 0):
             return {'status': False, 'msg': "Celular já cadastrado!"}
 
         return {'status': True}
@@ -130,7 +130,7 @@ class ClienteValidator:
     def valida_senha(self):
         senha = self.cliente.senha
         # checa vazio
-        if(self.estaVazio(senha)):
+        if(self.esta_vazio(senha)):
             return {'status': False, 'msg': "Digite uma senha!"}
         # checa tamanho mínimo
         if(len(senha) < QTD_MIN_DIG_SENHA):
@@ -140,29 +140,29 @@ class ClienteValidator:
 
     def valida_estado_id(self):
         estado_id = self.cliente.estado_id
-        estadosService = self.estadosService
+        estados_service = self.estados_service
         # checa vazio
-        if(self.estaVazio(estado_id)):
+        if(self.esta_vazio(estado_id)):
             return {'status': False, 'msg': "Escolha um estado!"}
         # checa se id do estado existe no banco
-        if(estadosService.estadoIdExiste(estado_id) <= 0):
+        if(estados_service.estado_id_existe(estado_id) <= 0):
             return {'status': False, 'msg': "Estado Inexistente"}
 
         return {'status': True}
 
     def valida_municipio_id(self):
         municipio_id = self.cliente.municipio_id
-        municipiosService = self.municipiosService
+        municipios_service = self.municipios_service
         # checa vazio
-        if(self.estaVazio(municipio_id)):
+        if(self.esta_vazio(municipio_id)):
             return {'status': False, 'msg': "Escolha um município!"}
         # checa se id do município existe no banco
-        if(municipiosService.municipioIdExiste(municipio_id) <= 0):
+        if(municipios_service.municipio_id_existe(municipio_id) <= 0):
             return {'status': False, 'msg': 'Município Inexistente'}
 
         return {'status': True}
 
-    def estaVazio(self, campo):
+    def esta_vazio(self, campo):
         if(campo == ""):
             return True
         return False

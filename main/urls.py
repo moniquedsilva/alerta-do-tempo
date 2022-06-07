@@ -25,9 +25,8 @@ from main.controllers.LoginController import LoginController
 urlpatterns = [
     path('', HomeController.as_view(), name='homeIndex'),
     path('cadastrar/', ClienteController.as_view(), name='cadastraIndex'),
-    path('cadastrar/insere', ClienteController.cadastra, name='cadastrar'),
-    path('cadastrar/loadCidadesByEstado',
-         ClienteController.loadCidadesByEstado, name='loadCidadesByEstado'),
+    path('cadastrar/insere', ClienteController.as_view(), name='cadastrar'),
+    path('cadastrar/loadCidadesByEstado', ClienteController.as_view(), name='loadCidadesByEstado'),
     path('login/', LoginController.as_view(), name='LoginIndex'),
     path('login/user/', LoginController.login_user, name='login'),
     path('logout', LoginController.logout_user, name='logout'),
