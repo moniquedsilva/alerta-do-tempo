@@ -1,0 +1,78 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #1b065e;
+}
+
+.dashboard__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 73px;
+    background-color: #14123f;
+}
+
+.dasboard__title {
+    font-size: 24px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    color: #f6f6f6;
+}
+
+.dashboard__logout {
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    font-weight: 600;
+    color: #5e77f4;
+}
+
+.dashboard__main {
+    margin-top: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.dashboard__content {
+    width: 100%;
+    padding: 0 73px;
+}
+
+.dashboard__content-title {
+    font-size: 48px;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: none;
+    font-weight: 400;
+    color: #f6f6f6;
+    text-align: center;
+}
+
+.dashboard__content-imgs {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.dashboard__content-btn {
+    margin: 0 auto;
+    display: block;
+    padding: 19px 137px;
+    border: transparent;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    color: #fff;
+    background-color: #4461f2;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in;
+}
+
+.dashboard__content-btn:hover {
+    background-color: #002aff;
+}
