@@ -31,7 +31,7 @@ class LoginController(View):
             if user is not None:
                 login(self, user)
                 self.session['_auth_user_id'] = celular
-                return render(self, 'dashboard.html')
+                return redirect('dashboard')
             else:
                 return HttpResponse('Não funcionou')
 
