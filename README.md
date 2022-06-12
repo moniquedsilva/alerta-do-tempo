@@ -41,7 +41,21 @@ Para instalar o <nome_do_projeto>, siga estas etapas:
 Linux e macOS:
 
 ```
-<comando_de_instalação>
+## Clone repositório
+git clone https://github.com/moniquedsilva/alerta-do-tempo.git
+
+## Instalar o venv
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+## Banco de dados
+cp .env.example .env
+python manage.py migrate
+
+## Run server
+python manage.py runserver
+
 ```
 
 ## :airplane: Rodando o projeto na sua máquina

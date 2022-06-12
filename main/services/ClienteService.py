@@ -4,7 +4,7 @@ from main.models.Cliente import Cliente
 from main.utils import dbClientes, status_conexao
 
 
-class ClienteService:
+class ClienteService():
 
     def __init__(self, cliente: Cliente = None):
         self.cliente = cliente
@@ -14,16 +14,21 @@ class ClienteService:
         # hash senha, usar--> check_password(password, encoded) para checar no login
         self.cliente.senha = make_password(self.cliente.senha)
         # insere cliente
-        cliente_dict = self.cliente.__dict__
+        cliente_dict = {'nome': self.cliente.nome,
+                        'ddi': self.cliente.ddi,
+                        'ddd': self.cliente.ddd,
+                        'celular': self.cliente.celular,
+                        'senha': self.cliente.senha,
+                        'municipio_id': self.cliente.municipio_id,
+                        'estado_id': self.cliente.estado_id}
         insert_result = dbClientes.insert_one(cliente_dict)
         return insert_result.acknowledged
 
-    def busca(self, id = None):
-        """Consulta clientes"""
-        if(id == None):
+    def busca(self, celular = None):
+        if(celular == None):
             return dbClientes.find(projection={'_id': False})
-        else:
-            return dbClientes.find({'id': id},projection={'_id': False})
+        else:    
+            return dbClientes.find_one({'celular':  celular}, projection={'_id': False})
 
     def atualiza(self):
         """Update clientes"""
