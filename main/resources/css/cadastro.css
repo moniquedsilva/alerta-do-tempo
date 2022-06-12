@@ -231,10 +231,11 @@ input:required:focus:invalid {
     z-index: 1;
     position: absolute;
     left: 50%;
-    min-width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100%;
     height: 55px;
-    padding: 0 27px;
-    line-height: 7.5vh;
     font-size: 1rem;
     font-family: var(--montserrat);
     font-weight: 500;
@@ -243,4 +244,11 @@ input:required:focus:invalid {
     text-align: center;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
     transform: translateX(-50%);
+}
+
+@media (min-width: 47.9em) {
+    #alerta {
+        min-width: 280px;
+        padding: 0 27px;
+    }
 }
