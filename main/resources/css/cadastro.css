@@ -221,27 +221,26 @@ input:required:focus:invalid {
 }
 
 #alerta {
-    /* 
+    /*
     No javascript faço uma animação/slide alterando
     essas propriedades, e a depender da resposta
     altero as cores do background
     */
     visibility: hidden;
     top: -15vh;
-    /* Estilo sofrível do alerta */
     z-index: 1;
     position: absolute;
-    left: 35vw;
-    width: 30vw;
-    height: 9vh;
+    left: 50%;
+    min-width: 280px;
+    height: 55px;
+    padding: 0 27px;
     line-height: 7.5vh;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #fff;
-    border-top: inset;
-    border-top-width: 3vh;
-    border-top-color: #0023d2;
-    border-radius: 3vh;
-    background-color: #71a9dd;
+    font-size: 1rem;
+    font-family: var(--montserrat);
+    font-weight: 500;
+    color: #212121;
+    border-radius: 0 0 15px 15px;
     text-align: center;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25);
+    transform: translateX(-50%);
 }

@@ -43,22 +43,21 @@ window.addEventListener("load", function () {
         if (resposta["status"]) {
             document.getElementById("form_cadastro").reset();
             //cores do background no sucesso
-            alerta.style.backgroundColor = "#71a9dd";
-            alerta.style.borderTopColor = "#0023d2";
-        }else{
+            alerta.style.backgroundColor = "#3EFF45";
+        } else {
             //cores do background na falha
-            alerta.style.backgroundColor = "rgb(243 155 155 / 68%)";
-            alerta.style.borderTopColor = "rgb(241 11 11 / 73%)";
+            alerta.style.backgroundColor = "#FF3E3E";
         }
-            
-        alerta.textContent = resposta["msg"]
-        let kf_alerta_slide = [{ top: "-15vh"}, 
-                                {top: "0", offset: 0.15},
-                                {top: "0", offset: 0.85},
-                                {top: "-15vh", visibility: "visible"}];
-        let options = {easing: 'ease', duration: 5000, fill: "backwards"};
-        alerta.animate(kf_alerta_slide, options)
-        
+
+        alerta.textContent = resposta["msg"];
+        let kf_alerta_slide = [
+            { top: "-15vh" },
+            { top: "0", offset: 0.15 },
+            { top: "0", offset: 0.85 },
+            { top: "-15vh", visibility: "visible" },
+        ];
+        let options = { easing: "ease", duration: 5000, fill: "backwards" };
+        alerta.animate(kf_alerta_slide, options);
     }
 
     function populaMuncipio() {
