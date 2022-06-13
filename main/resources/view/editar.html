@@ -15,9 +15,26 @@
 <title>Editar Perfil</title>
 </head>
 <body>
-  <header class="dashboard__header">
-    <a href={% url 'homeIndex' %} class="dasboard__title">Alerta do Tempo</a>
-    <a href="{% url 'logout' %}" class="dashboard__logout">Sair</a>
-</header>
+
+  <header class="edit__header">
+    <a href={% url 'homeIndex' %} class="edit__title">Alerta do Tempo</a>
+    <a href="{% url 'logout' %}" class="edit__logout">Sair</a>
+  </header>
+
+  <main class="edit__main">
+    <h1 class="edit__content-title">Editar Perfil</h1>
+    <section class="edit__content">
+        <div class="edit__content-imgs-left">
+            <img src="{% static 'assets/images/night-storm.png'  %}" alt="Tempestade" />
+        </div>
+        <div class="teste">
+          <h2>ALguma coisa</h2>
+        </div>
+        <div class="edit__content-imgs">
+          <img src="{% static 'assets/images/sol-nublado.png'  %}" alt="Nublado" />
+      </div>
+    </section>
+  </main>
+
 </body>
 </html>
