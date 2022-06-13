@@ -21,6 +21,7 @@ from django.urls import path
 from main.controllers.ClienteController import ClienteController
 from main.controllers.HomeController import HomeController
 from main.controllers.LoginController import LoginController
+from main.controllers.EditarController import EditarController
 
 urlpatterns = [
     path('', HomeController.as_view(), name='homeIndex'),
@@ -30,4 +31,5 @@ urlpatterns = [
     path('login/', LoginController.as_view(), name='LoginIndex'),
     path('login/user/', LoginController.login_user, name='login'),
     path('logout', LoginController.logout_user, name='logout'),
+    path('editar', EditarController.as_view(), name='editarIndex'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
