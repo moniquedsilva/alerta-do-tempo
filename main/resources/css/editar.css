@@ -1,0 +1,28 @@
+:root {
+  --montserrat: "Montserrat", sans-serif;
+}
+
+.dashboard__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 73px;
+  background-color: #99CEFF;
+}
+
+
+.dasboard__title {
+  font-size: 24px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  text-decoration: none;
+  color: #212121;
+}
+
+.dashboard__logout {
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  font-weight: 600;
+  color: #4461F2;
+}
