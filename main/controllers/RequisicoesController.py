@@ -123,13 +123,13 @@ class RequisicoesController(View):
 
         #Busca id da cidade na api INPE
         logging.info( "--------Buscando Id da cidade-------")
-        id_cidade = self.req_id_cidade(nome_cidade, nome_cidade_formatado, estado_sigla)
+        id_cidade = RequisicoesController.req_id_cidade(nome_cidade, nome_cidade_formatado, estado_sigla)
         if(id_cidade == None): return None
         resposta['id_cidade'] = id_cidade
 
         #Chuvas e Iuv
         logging.info( "--------Buscando dados de chuvas e iuv-------")
-        chuvas_iuv = self.req_chuvas_iuv(id_cidade)
+        chuvas_iuv = RequisicoesController.req_chuvas_iuv(id_cidade)
         if(chuvas_iuv == None):
             resposta['chuvas_iuv'] = None
         else:
@@ -142,7 +142,7 @@ class RequisicoesController(View):
             logging.info("Cidade não é litorânea, não é necessário requisição de ondas.")
             return resposta
         
-        ondas = self.req_ondas(id_cidade)
+        ondas = RequisicoesController.req_ondas(id_cidade)
         if(ondas == None): 
             resposta['ondas'] = None
             return resposta
@@ -151,7 +151,8 @@ class RequisicoesController(View):
         
         return resposta
     
-    def req_id_cidade(self, cidade, nome_cidade_formatado, sigla_estado) -> str:
+    @classmethod
+    def req_id_cidade(cls, cidade, nome_cidade_formatado, sigla_estado) -> str:
         """Requsição do id cidade na api da INPE"""
         url_find_id = "http://servicos.cptec.inpe.br/XML/listaCidades?city=" + nome_cidade_formatado
         req_id_cidade = RequisicaoIdCidade(url_find_id)
@@ -174,7 +175,8 @@ class RequisicoesController(View):
 
         return id_cidade
     
-    def req_chuvas_iuv(self, id_cidade) -> PrevisaoChuvas :
+    @classmethod
+    def req_chuvas_iuv(cls, id_cidade) -> PrevisaoChuvas :
         """ Realiza requisição e tratamento dos dados de chuvas e iuv"""
         #Se id ok, faz requisição dos dados da cidade
         url_chuvas_iuv = "http://servicos.cptec.inpe.br/XML/cidade/" + id_cidade + "/previsao.xml"
@@ -189,6 +191,7 @@ class RequisicoesController(View):
 
         return req_chuvas_iuv.pv_chuvas_iuv
     
+    @classmethod
     def req_ondas(self, id_cidade) -> Ondas:
         """ Realiza requisição e tratamento dos dados de ondas"""
         url_ondas = "http://servicos.cptec.inpe.br/XML/cidade/" + id_cidade + "/dia/1/ondas.xml"
