@@ -23,6 +23,7 @@
             <a href="{% url 'logout' %}" class="dashboard__logout">Sair</a>
         </header>
         <main class="dashboard__main">
+            {% csrf_token %}
             <section class="dashboard__content">
                 <h1 class="dashboard__content-title">Bem vindo(a)</h1>
                 <div class="dashboard__content-imgs">
@@ -31,8 +32,12 @@
                 <button class="dashboard__content-btn">Editar perfil</button>
             </section>
         </main>
-
+        <span id="make_beautiful"></span>
     </div>
 </body>
+<script type="text/javascript">
+    const URL_PREVISAO = "{% url 'loadPrevisao' %}"
+</script>
+<script type="text/javascript" src="{% static 'js/dashboard.js' %}"></script>
 
 </html>
