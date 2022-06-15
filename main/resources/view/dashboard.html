@@ -26,9 +26,9 @@
             {% csrf_token %}
             <section class="dashboard__content">
                 <h1 class="dashboard__content-title">Bem vindo(a)</h1>
-                <div class="dashboard__content-imgs">
-                    <img src="{% static 'assets/images/sol-nublado.png'  %}" alt="Nublado" />
-                </div>
+                <p class="dashboard__content-texto">Previsão do tempo para os próximos 4 dias</p>
+                <article id="alerts" class="dashboard__alerts">
+                </article>
                 <button class="dashboard__content-btn">Editar perfil</button>
             </section>
         </main>
