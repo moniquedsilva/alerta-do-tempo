@@ -24,7 +24,14 @@ window.addEventListener("load", function () {
     }
 
     function carregandoDados() {
-        //animação loading
+        let main = document.getElementById("alerts");
+        const loading = `
+            <div class="loader">
+                <div class="loader-wheel"></div>
+                <div class="loader-text"></div>
+            </div>
+        `;
+        main.innerHTML += loading;
     }
 
     function formatarData(data) {
@@ -34,8 +41,9 @@ window.addEventListener("load", function () {
 
     function respostaDados(dadosJSON) {
         let main = document.getElementById("alerts");
+        main.innerHTML = "";
         let dados = JSON.parse(dadosJSON);
-        const { chuvas_iuv, ondas } = dados;
+        const { chuvas_iuv } = dados;
         chuvas_iuv.lista_previsao.forEach((item) => {
             const dia = formatarData(item.dia);
             let alerta = `
