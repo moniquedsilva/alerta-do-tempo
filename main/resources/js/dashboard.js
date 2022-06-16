@@ -39,25 +39,6 @@ window.addEventListener("load", function () {
         return `${dd}/${mm}/${yyyy}`;
     }
 
-    function climaIcon(tipo) {
-        if (
-            tipo === "ci" ||
-            tipo === "c" ||
-            tipo === "ch" ||
-            tipo === "pp" ||
-            tipo === "pc"
-        )
-            return "chuvoso";
-        else if (tipo === "np" || tipo === "pn" || tipo === "n" || tipo === "e")
-            return "nublado";
-        else if (tipo === "t") return "tempestade";
-        else if (tipo === "ps" || tipo === "cl") return "ensolarado";
-        else if (tipo === "g" || tipo === "ne") return "nevada";
-        else {
-            return "parcialmente-nublado";
-        }
-    }
-
     function respostaDados(dadosJSON) {
         let main = document.getElementById("alerts");
         main.innerHTML = "";
@@ -65,7 +46,7 @@ window.addEventListener("load", function () {
         const { chuvas_iuv } = dados;
         chuvas_iuv.lista_previsao.forEach((item) => {
             const dia = formatarData(item.dia);
-            const icon = climaIcon(item.tempo);
+            const icon = item.categoria;
             let alerta = `
                 <div class="dashboard__alerts-conteudo">
                     <div class="dashboard__alerts-texto">
@@ -83,5 +64,8 @@ window.addEventListener("load", function () {
             main.innerHTML += alerta;
         });
         console.log(chuvas_iuv.lista_previsao);
+        /*As categoria do tempo são 6: 
+        nevada, tempestade, chuvoso, nublado
+        parcialmente-nublado e ensolarado*/
     }
 });

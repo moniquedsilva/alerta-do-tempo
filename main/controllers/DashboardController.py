@@ -44,13 +44,24 @@ class DashboardController(View):
         estado_service = EstadosService()
         estado = estado_service.busca_estado_by_id(cliente['estado_id'])
 
+        #--- Faz array com dados do usuário
+
+        if(municipio['litoranea'] == "sim"): litoraneo = True
+        else: litoraneo = False
+
+        usuario = {'nome': cliente['nome'],
+                    'municipio': municipio['nome'],
+                    'municipio-litoraneo': litoraneo,
+                    'estado': estado['nome'],
+                    'estado-sigla': estado['sigla']}
+
         #----Busca Id da cidade do cliente
         
         id_cidade = RequisicoesController.req_id_cidade(municipio['nome'], 
                                                         municipio['nome_formatado'], 
                                                         estado['sigla'])
-        msg_falha = 'Falha na Requisição. Por favor, tente nonvamente mais tarde'
-        if(id_cidade == None): return JsonResponse({'staus': False,
+        msg_falha = 'Falha na Requisição. Por favor, tente novamente mais tarde'
+        if(id_cidade == None): return JsonResponse({'status': False,
                                                     'msg': msg_falha})
         
         #----Busca dados de chuva e iuv-----
@@ -70,7 +81,8 @@ class DashboardController(View):
                 tempo_sigla = chuvas_iuv_dict['lista_previsao'][chave]['tempo']
                 for condicao in condicoes_tempo:
                     if(condicao['sigla'] == tempo_sigla):
-                        chuvas_iuv_dict['lista_previsao'][chave].update({'tempo_descricao': condicao['descricao']})
+                        chuvas_iuv_dict['lista_previsao'][chave].update({'tempo_descricao': condicao['descricao'],
+                                                                        'categoria': condicao['categoria']})
                         condicoes_tempo.rewind()
                         break
         
@@ -87,7 +99,10 @@ class DashboardController(View):
             ondas_dict['noite'] = vars(ondas_dict['noite'])
         
         
-        return JsonResponse({'chuvas_iuv': chuvas_iuv_dict, 'ondas': ondas_dict})
+        return JsonResponse({'status': True,
+                                'chuvas_iuv': chuvas_iuv_dict, 
+                                'ondas': ondas_dict,
+                                'usuario': usuario})
 
     def esta_logado(self, request):
         if "_auth_user_id" not in request.session:
