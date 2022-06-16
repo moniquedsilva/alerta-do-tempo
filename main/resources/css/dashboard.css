@@ -17,18 +17,18 @@ p {
     background-color: #1b065e;
 }
 
-.dashboard__alerts-tipo {
-    font-size: 24px;
-    font-weight: 500;
-    color: #e5af00;
+.dashboard__header {
+    display: flex;
+    justify-content: center;
+    padding: 16px 32px;
+    background-color: #14123f;
 }
 
-.dashboard__header {
+.dashboard__header div {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 32px;
-    background-color: #14123f;
+    width: 100%;
 }
 
 .dasboard__title {
@@ -73,7 +73,6 @@ p {
 
 .dashboard__content-title {
     order: 2;
-    flex-grow: 1;
     font-size: 32px;
     font-family: "Montserrat", sans-serif;
     text-decoration: none;
@@ -115,6 +114,93 @@ p {
     background-color: #002aff;
 }
 
+.dashboard__content-texto {
+    order: 2;
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    text-align: center;
+}
+
+.dashboard__alerts {
+    order: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    width: 100%;
+    font-size: 12px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.dashboard__alerts-conteudo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    width: 100%;
+    padding: 24px;
+    border-radius: 8px;
+    background-color: #14123f;
+    font-weight: 500;
+}
+
+.dashboard__alerts-texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: white;
+    text-align: center;
+}
+
+.dashboard__alerts-temperatura {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.dashboard__alerts-img {
+    width: 115px;
+}
+
+.dashboard__alerts-tipo {
+    font-size: 18px;
+    font-weight: 500;
+    color: #e5af00;
+}
+.dashboard__content-imgs img {
+    width: 300px;
+}
+
+@media (min-width: 33em) {
+    .dashboard__content-texto {
+        width: 70%;
+    }
+
+    .dashboard__content-btn {
+        width: 70%;
+    }
+
+    .dashboard__alerts-temperatura {
+        flex-direction: row;
+        gap: 24px;
+    }
+
+    .dashboard__alerts-conteudo {
+        flex-direction: row;
+        align-items: center;
+        width: 75%;
+    }
+
+    .dashboard__alerts-texto {
+        width: 220px;
+    }
+}
+
 @media (min-width: 63em) {
     .dashboard__header {
         padding: 16px 73px;
@@ -130,62 +216,8 @@ p {
 
     .dashboard__content-title {
         order: 1;
-        flex-grow: 0;
-        font-size: 48px;
+        font-size: 40px;
         margin: 0;
-    }
-
-    .dashboard__alerts {
-        order: 3;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        width: 40vw;
-        font-size: 16px;
-        font-family: "Montserrat", sans-serif;
-    }
-
-    .dashboard__alerts-temperatura {
-        display: flex;
-        gap: 24px;
-    }
-
-    .dashboard__alerts-conteudo {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-        width: 90%;
-        padding: 24px;
-        border-radius: 8px;
-        background-color: #14123f;
-        font-weight: 500;
-    }
-
-    .dashboard__alerts-texto {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 16px;
-        color: white;
-    }
-
-    .dashboard__alerts-img {
-        width: 130px;
-    }
-
-    .dashboard__content-texto {
-        order: 2;
-        font-size: 20px;
-        font-family: "Montserrat", sans-serif;
-        color: white;
-    }
-
-    .dashboard__content-imgs img {
-        width: 300px;
     }
 
     .dashboard__content-btn {
@@ -197,6 +229,40 @@ p {
 
     .dashboard__logout {
         font-size: 20px;
+    }
+
+    .dashboard__alerts {
+        width: 60vw;
+        font-size: 14px;
+    }
+
+    .dashboard__alerts-conteudo {
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    .dashboard__alerts-texto {
+        align-items: center;
+        gap: 16px;
+        width: 290px;
+    }
+
+    .dashboard__alerts-tipo {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 70em) {
+    .dashboard__alerts {
+        width: 45vw;
+    }
+
+    .dashboard__alerts-conteudo {
+        width: 560px;
+    }
+
+    .dashboard__header div {
+        width: 1300px;
     }
 }
 

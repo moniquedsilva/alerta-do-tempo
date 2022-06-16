@@ -19,8 +19,10 @@
 <body>
     <div class="dashboard">
         <header class="dashboard__header">
-            <a href={% url 'homeIndex' %} class="dasboard__title">Alerta do Tempo</a>
-            <a href="{% url 'logout' %}" class="dashboard__logout">Sair</a>
+            <div>
+                <a href={% url 'homeIndex' %} class="dasboard__title">Alerta do Tempo</a>
+                <a href="{% url 'logout' %}" class="dashboard__logout">Sair</a>
+            </div>
         </header>
         <main class="dashboard__main">
             {% csrf_token %}
