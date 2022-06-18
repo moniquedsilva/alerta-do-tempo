@@ -14,7 +14,7 @@ p {
     width: 100vw;
     min-height: 100vh;
     padding-bottom: 80px;
-    background-color: #1b065e;
+    background-color: #06105e;
 }
 
 .dashboard__header {
@@ -95,10 +95,10 @@ p {
 
 .dashboard__content-btn {
     order: 3;
-    margin: 0 auto;
+    margin: 16px auto;
     display: block;
     width: 100%;
-    padding: 12px 0px;
+    padding: 20px 0px;
     border: transparent;
     border-radius: 8px;
     font-size: 16px;
@@ -123,6 +123,7 @@ p {
 }
 
 .dashboard__alerts {
+    margin: 32px 0;
     order: 3;
     display: flex;
     flex-direction: column;
@@ -178,11 +179,11 @@ p {
 
 @media (min-width: 33em) {
     .dashboard__content-texto {
-        width: 70%;
+        width: 75%;
     }
 
     .dashboard__content-btn {
-        width: 70%;
+        width: 75%;
     }
 
     .dashboard__alerts-temperatura {
@@ -217,6 +218,7 @@ p {
     .dashboard__content-title {
         order: 1;
         font-size: 40px;
+        font-weight: 500;
         margin: 0;
     }
 
@@ -264,12 +266,17 @@ p {
     .dashboard__header div {
         width: 1300px;
     }
+
+    .dashboard__content-btn {
+        width: 560px;
+    }
 }
 
 /* --- Loading Animation --- */
 
 .loader {
-    width: 60px;
+    margin: 0 auto;
+    width: 100px;
 }
 
 .loader-wheel {
@@ -277,14 +284,17 @@ p {
     border: 2px solid rgba(30, 30, 30, 0.5);
     border-left: 4px solid #fff;
     border-radius: 50%;
-    height: 50px;
+    height: 90px;
     margin-bottom: 10px;
-    width: 50px;
+    width: 90px;
 }
 
 .loader-text {
+    margin-top: 16px;
     color: #fff;
-    font-family: arial, sans-serif;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
 }
 
 .loader-text:after {
@@ -303,15 +313,15 @@ p {
 
 @keyframes load {
     0% {
-        content: "Loading";
+        content: "Carregando";
     }
     33% {
-        content: "Loading.";
+        content: "Carregando.";
     }
     67% {
-        content: "Loading..";
+        content: "Carregando..";
     }
     100% {
-        content: "Loading...";
+        content: "Carregando...";
     }
 }
