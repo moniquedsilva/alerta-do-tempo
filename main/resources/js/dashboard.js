@@ -24,7 +24,7 @@ window.addEventListener("load", function () {
     }
 
     function carregandoDados() {
-        let main = document.getElementById("alerts");
+        let main = document.getElementById("alerta");
         const loading = `
             <div class="loader">
                 <div class="loader-wheel"></div>
@@ -40,10 +40,19 @@ window.addEventListener("load", function () {
     }
 
     function respostaDados(dadosJSON) {
-        let main = document.getElementById("alerts");
-        main.innerHTML = "";
         let dados = JSON.parse(dadosJSON);
-        const { chuvas_iuv } = dados;
+        const { chuvas_iuv, usuario } = dados;
+
+        let titulo = document.getElementById("titulo");
+        let nomeUsuario = usuario.nome.split(" ");
+        titulo.innerText = `Bem vindo(a) ${nomeUsuario[0]}`;
+
+        let fraseInicio = document.getElementById("texto");
+        fraseInicio.innerText = `Previsão do tempo para os próximos 4 dias em ${usuario.municipio}, ${usuario.estado}.`;
+
+        let main = document.getElementById("alerta");
+        main.innerHTML = "";
+
         chuvas_iuv.lista_previsao.forEach((item) => {
             const dia = formatarData(item.dia);
             const icon = item.categoria;
@@ -63,8 +72,8 @@ window.addEventListener("load", function () {
 
             main.innerHTML += alerta;
         });
-        console.log(chuvas_iuv.lista_previsao);
-        /*As categoria do tempo são 6: 
+        console.log(dados);
+        /*As categoria do tempo são 6:
         nevada, tempestade, chuvoso, nublado
         parcialmente-nublado e ensolarado*/
     }
