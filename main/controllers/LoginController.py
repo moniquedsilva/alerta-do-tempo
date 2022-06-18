@@ -1,3 +1,4 @@
+from django import require_http_methods
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
@@ -15,6 +16,7 @@ class LoginController(View):
         '''
         return render(request, 'login.html')
 
+    @require_http_methods(["POST"])
     def login_user(self, request):
         '''
         Realiza login no sistema.
@@ -35,6 +37,7 @@ class LoginController(View):
             else:
                 return HttpResponse('Não funcionou')
 
+    @require_http_methods(["POST"])
     def logout_user(self, request):
         '''
         Realiza logout do usuário.
