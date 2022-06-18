@@ -1,9 +1,9 @@
-from django import require_POST
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.views import View
+from django.views.decorators.http import require_POST
 
 
 class LoginController(View):
