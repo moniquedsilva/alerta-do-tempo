@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="shortcut icon" href="{% static 'assets/icons/logo.ico' %}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap"
@@ -19,20 +20,27 @@
 <body>
     <div class="dashboard">
         <header class="dashboard__header">
-            <a href={% url 'homeIndex' %} class="dasboard__title">Alerta do Tempo</a>
-            <a href="{% url 'logout' %}" class="dashboard__logout">Sair</a>
+            <div>
+                <a href={% url 'homeIndex' %} class="dasboard__title">Alerta do Tempo</a>
+                <a href="{% url 'logout' %}" class="dashboard__logout">Sair</a>
+            </div>
         </header>
         <main class="dashboard__main">
+            {% csrf_token %}
             <section class="dashboard__content">
-                <h1 class="dashboard__content-title">Bem vindo(a)</h1>
-                <div class="dashboard__content-imgs">
-                    <img src="{% static 'assets/images/sol-nublado.png'  %}" alt="Nublado" />
-                </div>
+                <h1 id="titulo" class="dashboard__content-title"></h1>
+                <p id="texto" class="dashboard__content-texto"></p>
+                <article id="alerta" class="dashboard__alerts">
+                </article>
                 <button class="dashboard__content-btn">Editar perfil</button>
             </section>
         </main>
-
+        <span id="make_beautiful"></span>
     </div>
 </body>
+<script type="text/javascript">
+    const URL_PREVISAO = "{% url 'loadPrevisao' %}"
+</script>
+<script type="text/javascript" src="{% static 'js/dashboard.js' %}"></script>
 
 </html>

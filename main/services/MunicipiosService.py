@@ -10,3 +10,6 @@ class MunicipiosService:
 
     def municipio_id_existe(self, municipio_id):
         return dbMunicipios.count_documents({"id": municipio_id})
+    
+    def busca_municipio_by_id(self, id):
+        return dbMunicipios.find_one({'id': id}, projection={'_id': False})
