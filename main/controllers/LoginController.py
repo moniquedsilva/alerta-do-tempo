@@ -15,7 +15,7 @@ class LoginController(View):
         '''
         return render(request, 'login.html')
 
-    def login_user(self):
+    def login_user(self, request):
         '''
         Realiza login no sistema.
         :param request: requisião HTTP POST.
@@ -23,24 +23,24 @@ class LoginController(View):
         :param senha: string.
         :return: render(request, 'dashboard.html') ou HttpResponse('Não funcionou').
         '''
-        if self.method == 'POST':
-            celular = self.POST['celular']
-            senha = self.POST['senha']
+        if request.method == 'POST':
+            celular = request.POST['celular']
+            senha = request.POST['senha']
 
-            user = authenticate(self, celular=celular, senha=senha)
+            user = authenticate(request, celular=celular, senha=senha)
             if user is not None:
-                login(self, user)
-                self.session['_auth_user_id'] = celular
+                login(request, user)
+                request.session['_auth_user_id'] = celular
                 return redirect('dashboard')
             else:
                 return HttpResponse('Não funcionou')
 
-    def logout_user(self):
+    def logout_user(self, request):
         '''
         Realiza logout do usuário.
         :param request: requisião HTTP.
         :return: redirect('homeIndex')
         '''
-        logout(self)
-        messages.info(self, "You have successfully logged out.")
+        logout(request)
+        messages.info(request, "You have successfully logged out.")
         return redirect('homeIndex')
