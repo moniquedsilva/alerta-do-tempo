@@ -81,18 +81,6 @@ p {
     text-align: center;
 }
 
-.dashboard__content-imgs {
-    order: 1;
-    position: absolute;
-    right: 73px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.dashboard__content-imgs img {
-    width: 40%;
-}
-
 .dashboard__content-btn {
     order: 3;
     margin: 16px auto;
@@ -172,9 +160,6 @@ p {
     font-size: 18px;
     font-weight: 500;
     color: #e5af00;
-}
-.dashboard__content-imgs img {
-    width: 300px;
 }
 
 @media (min-width: 33em) {
