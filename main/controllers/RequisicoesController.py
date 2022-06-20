@@ -4,6 +4,7 @@ import math
 import string
 import urllib.parse
 from datetime import datetime
+from typing import Union
 
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
@@ -116,7 +117,7 @@ class RequisicoesController(View):
 
             logging.debug("\n")
 
-    def executa_requisicoes(self, nome_cidade, nome_cidade_formatado, cidade_litoranea, estado_sigla) -> dict:
+    def executa_requisicoes(self, nome_cidade, nome_cidade_formatado, cidade_litoranea, estado_sigla) -> Union[dict, None]:
 
         resposta = dict()
 
@@ -154,7 +155,7 @@ class RequisicoesController(View):
         return resposta
 
     @classmethod
-    def req_id_cidade(cls, cidade, nome_cidade_formatado, sigla_estado) -> str:
+    def req_id_cidade(cls, cidade, nome_cidade_formatado, sigla_estado) -> Union[str, None]:
         """Requsição do id cidade na api da INPE"""
         url_find_id = "http://servicos.cptec.inpe.br/XML/listaCidades?city=" + \
             nome_cidade_formatado
@@ -200,7 +201,7 @@ class RequisicoesController(View):
         return req_chuvas_iuv.pv_chuvas_iuv
 
     @classmethod
-    def req_ondas(self, id_cidade) -> Ondas:
+    def req_ondas(cls, id_cidade) -> Ondas:
         """ Realiza requisição e tratamento dos dados de ondas"""
         url_ondas = "http://servicos.cptec.inpe.br/XML/cidade/" + \
             id_cidade + "/dia/1/ondas.xml"
@@ -219,7 +220,7 @@ class RequisicoesController(View):
 
     def verifica_condicoes_perigosas(self, chuvas_iuv, ondas, condicoes_tempo) -> dict:
 
-        resposta: Dict[str, str, str] = {}
+        resposta = {}
         resposta['chuvas'] = None
         resposta['iuv'] = None
         resposta['ondas'] = None
@@ -249,7 +250,7 @@ class RequisicoesController(View):
 
         return resposta
 
-    def verifica_chuvas(self, chuvas_iuv, condicoes_tempo) -> dict:
+    def verifica_chuvas(self, chuvas_iuv, condicoes_tempo) -> Union[dict, None]:
 
         # Pega apenas previsão do primeiro dia(pode ser o dia de hoje, ou pode ser o dia de amanhã)
         previsao = chuvas_iuv.lista_previsao[0]
@@ -300,7 +301,7 @@ class RequisicoesController(View):
                 "Não foi encontrada previsão de iuv para o dia de amanhã. Previsão mais próxima para: " + previsao.dia)
             return None
 
-        msg = string
+        msg = ""
         resposta = {}
         resposta['tipo'] = 'iuv'
 
@@ -377,7 +378,6 @@ class RequisicoesController(View):
                 logging.info("Iniciando envio de alerta sms: " + d)
             self.envia_sms(clientes, dict_sms)
 
-        return
 
     def buffer_sms(self, dado, tipo, dict_sms):
         if(dado != None):
@@ -412,4 +412,3 @@ class RequisicoesController(View):
         print(clientes)
         print(dict_sms)
         print('\n')
-        pass
