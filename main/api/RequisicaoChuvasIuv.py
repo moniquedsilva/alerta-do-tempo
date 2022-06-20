@@ -1,4 +1,3 @@
-import logging
 import xml.etree.ElementTree as ET
 
 from main.api.RequisicoesAPI import RequisicoesAPI
@@ -12,31 +11,24 @@ class RequisicaoChuvasIuv(RequisicoesAPI):
 
     def trata_dados(self):
         root = ET.fromstring(self.data)
-        ListaPrevisao = []
+        dados = {}
+        lista_previsao = []
         possui_data = False
         for elem in root:
             possui_data = True
-            if elem.tag == "nome":
-                nome = elem.text
-            if elem.tag == "uf":
-                uf = elem.text
-            if elem.tag == "atualizacao":
-                atualizacao = elem.text
-            if elem.tag == "previsao":
-                for e in elem:
-                    if e.tag == "dia":
-                        dia = e.text
-                    if e.tag == "tempo":
-                        tempo = e.text
-                    if e.tag == "maxima":
-                        maxima = e.text
-                    if e.tag == "minima":
-                        minima = e.text
-                    if e.tag == "iuv":
-                        iuv = e.text
-                p = Previsao(dia, tempo, maxima, minima, iuv)
-                ListaPrevisao.append(p)
+            if(elem.tag != "previsao"):
+                dados.update({elem.tag: elem.text})
+            else:
+                dados_previsao = {e.tag: e.text for e in elem}
+              
+                p = Previsao(dados_previsao['dia'], 
+                                dados_previsao['tempo'], 
+                                dados_previsao['maxima'], 
+                                dados_previsao['minima'], 
+                                dados_previsao['iuv'])
+                lista_previsao.append(p)
+        
         self.pv_chuvas_iuv = PrevisaoChuvas(
-            nome, uf, atualizacao, ListaPrevisao)
+            dados['nome'], dados['uf'], dados['atualizacao'], lista_previsao)
 
         return possui_data

@@ -73,7 +73,7 @@ window.addEventListener("load", function () {
             main.innerHTML += alerta;
         });
         console.log(dados);
-        /*As categoria do tempo são 6:
+        /*As categorias do tempo são 6:
         nevada, tempestade, chuvoso, nublado
         parcialmente-nublado e ensolarado*/
     }
