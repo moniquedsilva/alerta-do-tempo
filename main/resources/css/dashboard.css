@@ -8,10 +8,14 @@ p {
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden !important;
+}
+
 .dashboard {
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     padding-bottom: 80px;
     background-color: #06105e;
