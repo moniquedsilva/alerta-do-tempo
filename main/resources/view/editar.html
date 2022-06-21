@@ -39,17 +39,19 @@
 
             <input class="edit__input" type="password" name="senha" placeholder="Senha" required />
 
-            <select id="estado" class="cadastro__select" name="estado">
-              {% for estado in estados %}
-              <option value="{{ estado.id }}">{{ estado.sigla }}</option>
-              {% endfor %}
-          </select>
+            <div class="edit__dropdown">
+              <select id="estado" class="edit__select" name="estado">
+                {% for estado in estados %}
+                <option value="{{ estado.id }}">{{ estado.sigla }}</option>
+                {% endfor %}
+            </select>
 
-          <select id="municipio" class="cadastro__select" name="municipio">
-              <option value="none" selected disabled hidden>Municipio</option>
-          </select>
-
+            <select id="municipio" class="edit__select" name="municipio">
+                <option value="none" selected disabled hidden>Municipio</option>
+            </select>
+            </form>
             <input type="submit" class="edit__button" value="Salvar" />
+        </div>
 
         </form>
         </div>
