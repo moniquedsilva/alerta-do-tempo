@@ -190,6 +190,7 @@ input:required:focus:invalid {
 }
 
 @media (min-width: 47.9em) {
+  
   .edit__area {
       width: 50%;
       font-size: 1rem;
@@ -214,5 +215,13 @@ input:required:focus:invalid {
   .edit__area {
       align-items: flex-start;
       padding: 0 0 0 120px;
+  }
+
+ }
+
+
+ @media(max-width: 1064px) {
+  .edit__content-imgs {
+    display: none;
   }
 }
