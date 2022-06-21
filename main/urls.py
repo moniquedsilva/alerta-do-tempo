@@ -32,5 +32,5 @@ urlpatterns = [
     path('login/user/', LoginController.login_user, name='login'),
     path('logout', LoginController.logout_user, name='logout'),
     path('editar', EditarController.as_view(), name='editarIndex'),
-    path('editar/user/', EditarController.as_view(), name='editar')
+    path('editar/user/', EditarController.editar, name='editar')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
