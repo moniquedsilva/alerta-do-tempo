@@ -28,7 +28,7 @@
                 <p class="login__paragrafo">
                     Faça login para continuar
                 </p>
-                <form action="{% url 'login' %}" method="post" id="form_login" class="login__form">
+                <form action="" method="post" id="form_login" class="login__form">
                     {% csrf_token %}
                     <div class="login__telefone">
                         <label for="ddi">DDI: </label>
@@ -49,7 +49,13 @@
                 </form>
             </div>
         </section>
+        <span id="alerta"></span>
     </main>
 </body>
+<script type="text/javascript">
+    const URL_SUBMIT_FORM = "{% url 'login' %}"
+    const URL_REDIRECT = "{% url 'dashboard' %}"
+</script>
+<script type="text/javascript" src="{% static 'js/login.js' %}"></script>
 
 </html>
