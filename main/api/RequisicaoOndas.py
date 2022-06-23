@@ -13,14 +13,14 @@ class RequisicaoOndas(RequisicoesAPI):
         root = ET.fromstring(self.data)
         possui_data = False
         dados = {}
-        lista_turno = {}
+        lista_previsao = []
         for elem in root:
             possui_data = True
-            if elem.tag != "manha" and elem.tag != "tarde" and elem.tag != "noite":
+            if elem.tag != "previsao":
                 dados.update({elem.tag: elem.text})
             else:
                 dados_previsao = {e.tag: e.text for e in elem}
-                lista_turno.update({elem.tag: OndasInfo(dados_previsao['dia'],
+                lista_previsao.append({elem.tag: OndasInfo(dados_previsao['dia'],
                                                         dados_previsao['agitacao'],
                                                         dados_previsao['altura'],
                                                         dados_previsao['direcao'],
@@ -30,7 +30,5 @@ class RequisicaoOndas(RequisicoesAPI):
         self.pv_ondas = Ondas(dados['nome'], 
                                 dados['uf'], 
                                 dados['atualizacao'], 
-                                lista_turno['manha'], 
-                                lista_turno['tarde'], 
-                                lista_turno['noite'])
+                                lista_previsao)
         return possui_data

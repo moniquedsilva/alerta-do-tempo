@@ -1,4 +1,4 @@
-import json
+import math
 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -35,24 +35,14 @@ class DashboardController(View):
 
     def loadPrevisao(self, request):
 
-        # Retorna dados do banco
-        celular = request.session['_auth_user_id']
-        cliente_service = ClienteService()
-        cliente = cliente_service.busca(celular)
+        cliente = self.get_cliente(request)
+        municipio = self.get_municipio(cliente['municipio_id'])
+        estado = self.get_estado(cliente['estado_id'])      
+          
+         # --- Faz array com dados do usuário
 
-        municipio_service = MunicipiosService()
-        municipio = municipio_service.busca_municipio_by_id(
-            cliente['municipio_id'])
-
-        estado_service = EstadosService()
-        estado = estado_service.busca_estado_by_id(cliente['estado_id'])
-
-        # --- Faz array com dados do usuário
-
-        if(municipio['litoranea'] == "sim"):
-            litoraneo = True
-        else:
-            litoraneo = False
+        if(municipio['litoranea'] == "sim"): litoraneo = True
+        else: litoraneo = False
 
         usuario = {'nome': cliente['nome'],
                    'municipio': municipio['nome'],
@@ -82,7 +72,7 @@ class DashboardController(View):
             condicoes_tempo_service = CondicoesTempoService()
             condicoes_tempo = condicoes_tempo_service.busca()
 
-            # Adiciona descrição aos dados de chuva
+            # Adiciona descrição aos dados de chuva e label para iuv
             for chave in range(len(chuvas_iuv_dict['lista_previsao'])):
                 tempo_sigla = chuvas_iuv_dict['lista_previsao'][chave]['tempo']
                 for condicao in condicoes_tempo:
@@ -91,24 +81,69 @@ class DashboardController(View):
                                                                         'categoria': condicao['categoria']})
                         condicoes_tempo.rewind()
                         break
+                iuv = math.floor(float(chuvas_iuv_dict['lista_previsao'][chave]['iuv']))
+                label = self.label_iuv(iuv)
+                chuvas_iuv_dict['lista_previsao'][chave].update({'iuv_descricao': label})
+            
+            # Adiciona label para iuv
 
         # Ondas
-        if municipio['litoranea'] == 'nao':
-            ondas = None
+        if municipio['litoranea'] == 'nao':ondas = None
         else:
             # Pode retornar nulo, caso haja erro
             ondas = RequisicoesController.req_ondas(id_cidade)
             # organiza
             ondas_dict = vars(ondas)
-            ondas_dict['manha'] = vars(ondas_dict['manha'])
-            ondas_dict['tarde'] = vars(ondas_dict['tarde'])
-            ondas_dict['noite'] = vars(ondas_dict['noite'])
+            ondas_dict['lista_previsao'] = [vars(l['previsao']) for l in ondas_dict['lista_previsao']]
+            
 
         return JsonResponse({'status': True,
                              'chuvas_iuv': chuvas_iuv_dict,
                              'ondas': ondas_dict,
                              'usuario': usuario})
 
+    def get_cliente(self, request):
+        # Retorna dados do banco
+        celular = request.session['_auth_user_id']
+        cliente_service = ClienteService()
+        cliente = cliente_service.busca(celular)
+
+        return cliente
+    
+    def get_municipio(self, municipio_id):
+        municipio_service = MunicipiosService()
+        municipio = municipio_service.busca_municipio_by_id(municipio_id)
+
+        return municipio
+    
+    def get_estado(self, estado_id):
+        estado_service = EstadosService()
+        estado = estado_service.busca_estado_by_id(estado_id)
+
+        return estado
+    
+    def label_iuv(self, iuv):
+
+        # 1 a 2 - baixo, 3 a 5 - moderado, 6 a 7 - alto
+        # 8 a 11 - muito alto, a partir de 11 - extremo
+        CONDICAO_BAIXA_IUV = 2
+        CONDICAO_MODERADA_IUV = 5
+        CONDICAO_ALTA_IUV = 7
+        CONDICAO_MUITO_ALTA_IUV = 11
+
+        if(iuv <= CONDICAO_BAIXA_IUV):
+            label = "Baixo"
+        elif(iuv > CONDICAO_BAIXA_IUV and iuv <= CONDICAO_MODERADA_IUV):
+            label = "Moderado"
+        elif(iuv > CONDICAO_MODERADA_IUV and iuv <= CONDICAO_ALTA_IUV):
+            label = "Alto"
+        elif(iuv > CONDICAO_ALTA_IUV and iuv <= CONDICAO_MUITO_ALTA_IUV):
+            label = "Muito Alto"
+        else:
+            label = "Extremo"
+
+        return label
+    
     def esta_logado(self, request):
         if "_auth_user_id" not in request.session:
             return False
