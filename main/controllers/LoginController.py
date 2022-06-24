@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.views import View
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_GET, require_POST
 
 
 class LoginController(View):
@@ -37,7 +37,7 @@ class LoginController(View):
             else:
                 return HttpResponse('Não funcionou')
 
-    @require_POST
+    @require_GET
     def logout_user(self):
         '''
         Realiza logout do usuário.
