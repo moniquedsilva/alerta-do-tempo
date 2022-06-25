@@ -1,4 +1,24 @@
 window.addEventListener("load", function () {
+    // Menu mobile
+    const nav = document.querySelector(".nav-toggle");
+    nav.addEventListener("click", function () {
+        const links = document.querySelector(".links");
+        links.classList.toggle("show-links");
+    });
+
+    //Data
+    const hoje = new Date();
+    const dia = hoje.getDate();
+    const mes = hoje.toLocaleString("pt-br", { month: "long" });
+    const ano = hoje.getFullYear();
+    document.querySelector(".data").innerHTML = `
+        <div class="data-dia">${dia}</div>
+        <div>
+            <div class="data-mes">${mes}</div>
+            <div class="data-ano">${ano}</div>
+        </div>
+    `;
+
     //Token csrf
     let tokens = document.getElementsByName("csrfmiddlewaretoken");
     let csrf_token = tokens[0].getAttribute("value");
@@ -41,37 +61,85 @@ window.addEventListener("load", function () {
 
     function respostaDados(dadosJSON) {
         let dados = JSON.parse(dadosJSON);
-        const { chuvas_iuv, usuario } = dados;
+        const { chuvas_iuv, ondas, usuario } = dados;
 
         let titulo = document.getElementById("titulo");
         let nomeUsuario = usuario.nome.split(" ");
         titulo.innerText = `Bem vindo(a) ${nomeUsuario[0]}`;
 
         let fraseInicio = document.getElementById("texto");
-        fraseInicio.innerText = `Previsão do tempo para os próximos 4 dias em ${usuario.municipio}, ${usuario.estado}.`;
+        fraseInicio.innerText = `Previsão do tempo para ${
+            dia + 1
+        } de ${mes} em ${usuario.municipio}, ${usuario.estado}.`;
 
         let main = document.getElementById("alerta");
         main.innerHTML = "";
 
-        chuvas_iuv.lista_previsao.forEach((item) => {
-            const dia = formatarData(item.dia);
-            const icon = item.categoria;
-            let alerta = `
-                <div class="dashboard__alerts-conteudo">
-                    <div class="dashboard__alerts-texto">
-                        <h2>${dia}</h2>
-                        <div class="dashboard__alerts-temperatura">
-                            <h3>Máxima: ${item.maxima}</h3>
-                            <h3>Mínima: ${item.minima}</h3>
+        //Clima card
+        let clima = chuvas_iuv.lista_previsao[0];
+        let previsaoClima = `
+                <div class="alertas-area">
+                    <div class="alertas-texto">
+                        <h2>Clima</h2>
+                        <div class="alertas-temperatura">
+                            <p>Máxima: ${clima.maxima} ºC</p>
+                            <p>Mínima: ${clima.minima} ºC</p>
                         </div>
-                        <p class="dashboard__alerts-tipo">${item.tempo_descricao}</p>
+                        <p class="alertas-tipo">${clima.tempo_descricao}</p>
                     </div>
-                    <img src="/main/resources/assets/images/${icon}.png" alt="${item.tempo}-tempo" class="dashboard__alerts-img" />
+                    <img src="/main/resources/assets/images/${clima.categoria}.png" alt="${clima.tempo}-tempo" class="alertas-img" />
                 </div>
             `;
 
-            main.innerHTML += alerta;
-        });
+        main.innerHTML += previsaoClima;
+
+        //UV card
+        let uv = chuvas_iuv.lista_previsao[0].iuv;
+        let previsaoUV = `
+                <div class="alertas-area">
+                    <div class="alertas-texto">
+                        <h2>índice UV</h2>
+                        <div class="alertas-temperatura">
+                            <p>${uv}</p>
+                        </div>
+                        <p class="alertas-tipo">Alto</p>
+                    </div>
+                    <img src="/main/resources/assets/images/ensolarado.png" alt="ensolarado" class="alertas-img" />
+                </div>
+            `;
+
+        main.innerHTML += previsaoUV;
+
+        //Ondas card
+        let onda = ondas.manha;
+        let previsaoOndas = `
+                <div class="alertas-area">
+                    <div class="alertas-texto">
+                        <h2>Ondas</h2>
+                        <div class="alertas-temperatura">
+                            <p>Altura: ${onda.altura} m</p>
+                        </div>
+                        <p class="alertas-tipo">${onda.agitacao}</p>
+                    </div>
+                    <img src="/main/resources/assets/images/ondas.svg" alt="Ondas" class="alertas-img-ondas" />
+                </div>
+            `;
+
+        main.innerHTML += previsaoOndas;
+
+        //Ventos card
+        let previsaoVentos = `
+                <div class="alertas-area">
+                    <div class="alertas-texto">
+                        <h2>Vento</h2>
+                        <p class="alertas-tipo">${onda.vento} km/h</p>
+                    </div>
+                    <img src="/main/resources/assets/images/vento.svg" alt="Vento" class="alertas-img" />
+                </div>
+            `;
+
+        main.innerHTML += previsaoVentos;
+
         console.log(dados);
         /*As categorias do tempo são 6:
         nevada, tempestade, chuvoso, nublado
