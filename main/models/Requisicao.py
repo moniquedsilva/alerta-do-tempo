@@ -20,13 +20,11 @@ class Previsao:
         self.iuv = iuv
 
 class Ondas:
-    def __init__(self, nome, uf, atualizacao, manha, tarde, noite) -> None:
+    def __init__(self, nome, uf, atualizacao, lista_previsao) -> None:
         self.nome = nome
         self.uf = uf
         self.atualizacao = atualizacao
-        self.manha = manha
-        self.tarde = tarde
-        self.noite = noite
+        self.lista_previsao = lista_previsao
         
 #Estrura para dados dentro das tags manha, tarde e noite
 class OndasInfo:

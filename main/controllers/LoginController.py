@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.views import View
 from django.views.decorators.http import require_GET, require_POST
@@ -33,9 +33,10 @@ class LoginController(View):
             if user is not None:
                 login(self, user)
                 self.session['_auth_user_id'] = celular
-                return redirect('dashboard')
+                return JsonResponse({'status': True})
             else:
-                return HttpResponse('Não funcionou')
+                return JsonResponse({'status': False,
+                                     'msg': "Falha no Login. Usuário ou senha incorretos!"})
 
     @require_GET
     def logout_user(self):
