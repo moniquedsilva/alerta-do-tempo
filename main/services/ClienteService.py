@@ -41,7 +41,7 @@ class ClienteService():
                         'municipio_id': self.cliente.municipio_id,
                         'estado_id': self.cliente.estado_id}
 
-        alteracao =  dbClientes.update_many({'celular':  celular_atual} ,
+        alteracao =  dbClientes.update_one({'celular':  celular_atual} ,
             {
                 "$set":{cliente_atualiza},
             }
