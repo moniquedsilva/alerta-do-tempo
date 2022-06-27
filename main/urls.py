@@ -19,9 +19,12 @@ from django.conf.urls.static import static
 from django.urls import path
 
 from main.controllers.ClienteController import ClienteController
+from main.controllers.ClimaController import ClimaController
 from main.controllers.DashboardController import DashboardController
 from main.controllers.HomeController import HomeController
+from main.controllers.IndiceUVController import IndiceUVController
 from main.controllers.LoginController import LoginController
+from main.controllers.OndasController import OndasController
 
 urlpatterns = [
     path('', HomeController.as_view(), name='homeIndex'),
@@ -33,6 +36,9 @@ urlpatterns = [
     path('login/user/', LoginController.login_user, name='login'),
     path('logout', LoginController.logout_user, name='logout'),
     path('dashboard', DashboardController.as_view(), name='dashboard'),
+    path('clima', ClimaController.as_view(), name='clima'),
+    path('indice_uv', IndiceUVController.as_view(), name='indice_uv'),
+    path('ondas', OndasController.as_view(), name='ondas'),
     path('dashboard/loadPrevisao',
          DashboardController.as_view(), name='loadPrevisao')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

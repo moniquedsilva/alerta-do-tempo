@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
     <link rel="stylesheet" href="{% static 'css/loading.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/alertas.css' %}" />
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="shortcut icon" href="{% static 'assets/icons/logo.ico' %}" type="image/x-icon">
@@ -36,16 +37,16 @@
                 </div>
                 <ul class="links">
                     <li>
-                        <a href="#">Dashboard</a>
+                        <a href="{% url 'dashboard' %}">Dashboard</a>
                     </li>
                     <li>
-                        <a href="#">Clima</a>
+                        <a href="{% url 'clima' %}">Clima</a>
                     </li>
                     <li>
-                        <a href="#">Índice UV</a>
+                        <a href="{% url 'indice_uv' %}">Índice UV</a>
                     </li>
                     <li>
-                        <a href="#">Ondas</a>
+                        <a href="{% url 'ondas' %}">Ondas</a>
                     </li>
                     <li>
                         <a href="{% url 'logout' %}" class="nav-logout">
