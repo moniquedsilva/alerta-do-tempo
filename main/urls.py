@@ -21,6 +21,7 @@ from django.urls import path
 from main.controllers.ClienteController import ClienteController
 from main.controllers.ClimaController import ClimaController
 from main.controllers.DashboardController import DashboardController
+from main.controllers.EditarController import EditarController
 from main.controllers.HomeController import HomeController
 from main.controllers.IndiceUVController import IndiceUVController
 from main.controllers.LoginController import LoginController
@@ -40,7 +41,9 @@ urlpatterns = [
     path('indice_uv', IndiceUVController.as_view(), name='indice_uv'),
     path('ondas', OndasController.as_view(), name='ondas'),
     path('dashboard/loadPrevisao',
-         DashboardController.as_view(), name='loadPrevisao')
+         DashboardController.as_view(), name='loadPrevisao'),
+    path('editar', EditarController.as_view(), name='editarIndex'),
+    path('editar/user/', EditarController.editar, name='editar')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 handler400 = 'main.views.handler400'

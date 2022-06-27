@@ -30,9 +30,28 @@ class ClienteService():
         else:    
             return dbClientes.find_one({'celular':  celular}, projection={'_id': False})
 
-    def atualiza(self):
-        """Update clientes"""
-        pass
+    def atualiza(self, celular_atual):
+        '''
+        Update clientes
+        '''
+
+        self.cliente.senha = make_password(self.cliente.senha)
+
+        cliente_atualiza = {'nome': self.cliente.nome,
+                        'ddi': self.cliente.ddi,
+                        'ddd': self.cliente.ddd,
+                        'celular': self.cliente.celular,
+                        'senha': self.cliente.senha,
+                        'municipio_id': self.cliente.municipio_id,
+                        'estado_id': self.cliente.estado_id}
+
+        alteracao =  dbClientes.update_one({'celular':  celular_atual} ,
+            {
+                "$set":{cliente_atualiza},
+            }
+            )
+        return alteracao
+
 
     def deleta(self):
         """Deleta clientes"""
