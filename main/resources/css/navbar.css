@@ -31,6 +31,7 @@ nav {
     align-items: center;
     justify-content: space-between;
     padding: 1rem 2rem;
+    position: absolute;
 }
 
 .nav-title {
@@ -76,13 +77,15 @@ nav {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 0;
+    height: max-height;
     overflow: hidden;
     transition: all 0.3s linear;
 }
 
 .show-links {
     height: 12rem;
+    background: #14123f;
+    position: absolute;
 }
 
 .nav-logout {

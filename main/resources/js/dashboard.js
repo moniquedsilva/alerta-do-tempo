@@ -1,11 +1,4 @@
 window.addEventListener("load", function () {
-    // Menu mobile
-    const nav = document.querySelector(".nav-toggle");
-    nav.addEventListener("click", function () {
-        const links = document.querySelector(".links");
-        links.classList.toggle("show-links");
-    });
-
     //Data
     const hoje = new Date();
     const dia = hoje.getDate();
@@ -19,47 +12,82 @@ window.addEventListener("load", function () {
         </div>
     `;
 
-    //Token csrf
-    let tokens = document.getElementsByName("csrfmiddlewaretoken");
-    let csrf_token = tokens[0].getAttribute("value");
+    let titulo = document.getElementById("titulo");
+    titulo.innerText = `Bem vindo(a) Monique`;
 
-    carregaDados();
+    let fraseInicio = document.getElementById("texto");
+    fraseInicio.innerText = `Previsão do tempo para 27 de junho em Salvador, Bahia.`;
 
-    function carregaDados() {
-        let xhr = new XMLHttpRequest();
-        let url = URL_PREVISAO;
+    let main = document.getElementById("alerta");
+    main.innerHTML = "";
 
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader("Accept", "application/x-www-form-urlencoded");
-        xhr.setRequestHeader(
-            "Content-Type",
-            "application/x-www-form-urlencoded"
-        );
-        let formData = new FormData();
-        formData.append("csrfmiddlewaretoken", csrf_token);
-        xhr.onloadstart = () => carregandoDados();
-        xhr.onload = () => respostaDados(xhr.response);
-        let data = new URLSearchParams(formData).toString();
-        xhr.send(data);
-    }
+    //Clima card
+    let previsaoClima = `
+                <div class="alertas-area">
+                    <div class="alertas-texto">
+                        <h2>Clima</h2>
+                        <div class="alertas-temperatura">
+                            <p>Máxima: 26 ºC</p>
+                            <p>Mínima: 24 ºC</p>
+                        </div>
+                        <p class="alertas-tipo">Chuvoso</p>
+                    </div>
+                    <img src="/main/resources/assets/images/chuvoso.png" alt="Chuvoso-tempo" class="alertas-img" />
+                </div>
+            `;
 
-    function carregandoDados() {
-        let main = document.getElementById("alerta");
-        const loading = `
-            <div class="loader">
-                <div class="loader-wheel"></div>
-                <div class="loader-text"></div>
-            </div>
-        `;
-        main.innerHTML += loading;
-    }
+    main.innerHTML += previsaoClima;
 
-    function formatarData(data) {
-        const [yyyy, mm, dd] = data.split("-");
-        return `${dd}/${mm}/${yyyy}`;
-    }
+    //UV card
+    let previsaoUV = `
+                <div class="alertas-area">
+                    <div class="alertas-texto">
+                        <h2>índice UV</h2>
+                        <div class="alertas-temperatura">
+                            <p>5.0</p>
+                        </div>
+                        <p class="alertas-tipo">Moderado</p>
+                    </div>
+                    <img src="/main/resources/assets/images/ensolarado.png" alt="ensolarado" class="alertas-img" />
+                </div>
+            `;
 
-    function respostaDados(dadosJSON) {
+    main.innerHTML += previsaoUV;
+
+    let previsaoOndas = `
+                <div class="alertas-area">
+                    <div class="alertas-texto">
+                        <h2>Ondas</h2>
+                        <div class="alertas-temperatura">
+                            <p>Altura: 2.17m</p>
+                        </div>
+                        <p class="alertas-tipo">Alta</p>
+                    </div>
+                    <img src="/main/resources/assets/images/ondas.svg" alt="Ondas" class="alertas-img-ondas" />
+                </div>
+            `;
+
+    main.innerHTML += previsaoOndas;
+
+    //Ventos card
+    let previsaoVentos = `
+                <div class="alertas-area">
+                    <div class="alertas-texto">
+                        <h2>Vento</h2>
+                        <p class="alertas-tipo">35 km/h</p>
+                    </div>
+                    <img src="/main/resources/assets/images/vento.svg" alt="Vento" class="alertas-img" />
+                </div>
+            `;
+
+    main.innerHTML += previsaoVentos;
+
+    /*As categorias do tempo são 6:
+        nevada, tempestade, chuvoso, nublado
+        parcialmente-nublado e ensolarado*/
+});
+
+/*    function respostaDados(dadosJSON) {
         let dados = JSON.parse(dadosJSON);
         const { chuvas_iuv, ondas, usuario } = dados;
 
@@ -141,8 +169,4 @@ window.addEventListener("load", function () {
         main.innerHTML += previsaoVentos;
 
         console.log(dados);
-        /*As categorias do tempo são 6:
-        nevada, tempestade, chuvoso, nublado
-        parcialmente-nublado e ensolarado*/
-    }
-});
+*/

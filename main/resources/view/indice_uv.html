@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/indice_uv.css' %}" />
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
     <link rel="stylesheet" href="{% static 'css/loading.css' %}" />
     <link rel="stylesheet" href="{% static 'css/alertas.css' %}" />
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
-    <link rel="shortcut icon" href="{% static 'assets/icons/logo.ico' %}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="shortcut icon" href="{% static 'assets/icons/logo.ico' %}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap"
         rel="stylesheet" />
-    <title>Dashboard | Alerta do Tempo</title>
+    <title>Índice UV | Alerta do Tempo</title>
 </head>
 
 <body>
@@ -67,22 +67,20 @@
             </div>
         </nav>
     </header>
-    <main class="dashboard">
+    <main class="indice-uv">
         {% csrf_token %}
-        <article class="data"></article>
         <section class="conteiner">
             <h1 id="titulo" class="conteiner-titulo"></h1>
             <p id="texto" class="conteiner-texto"></p>
-            <article id="alerta" class="alertas">
+            <article id="alerta" class="alertas-coluna">
             </article>
         </section>
-        <a href="{% url 'editarIndex' %}" class="btn">Editar perfil</a>
     </main>
 </body>
 <script type="text/javascript">
     const URL_PREVISAO = "{% url 'loadPrevisao' %}"
 </script>
-<script type="text/javascript" src="{% static 'js/dashboard.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/indice_uv.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/navbar.js' %}"></script>
 
 </html>
