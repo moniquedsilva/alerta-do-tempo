@@ -25,10 +25,9 @@
     <h1 class="edit__content-title">Editar Perfil</h1>
     <section class="edit__content">
         <div class="edit_image-form">
-          {% csrf_token %}
-          <form action="" method="post" id="form_edit" class="edit__form">
-            <input class="edit__input" type="nome" name="senha" placeholder="Nome" required />
-
+          <form action="{% url 'editar' %}" method="post" id="form_edit" class="edit__form">
+            {% csrf_token %}
+            <input class="edit__input" type="text" name="nome" placeholder="Nome" required />
             <div class="edit__telefone">
                 <input type="text" id="ddi" name="ddi" value="55" readonly />
                 <input type="text" id="ddd" name="ddd" placeholder="DDD" pattern="[0-9]{2}"
@@ -65,7 +64,6 @@
   <script type="text/javascript">
     const URL_SUBMIT_FORM = "{% url 'editar' %}"
     const URL_LOAD_MUNICIPIOS = "{% url 'loadCidadesByEstado' %}"
-    console.log(URL_LOAD_MUNICIPIOS)
   </script>
 <script type="text/javascript" src="{% static 'js/editar.js' %}"></script>
 </html>
