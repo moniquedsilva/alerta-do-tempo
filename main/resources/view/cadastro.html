@@ -8,6 +8,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/cadastro.css' %}" />
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
+    <link rel="shortcut icon" href="{% static 'assets/icons/logo.ico' %}" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -30,8 +31,9 @@
                 <form action="" id="form_cadastro" class="cadastro__form">
                     {% csrf_token %}
                     <label for="nome">Nome</label>
-                    <input class="cadastro__input" type="text" name="nome" placeholder="Nome" pattern="[A-Za-z]+"
-                        minlength="3" title="Insira um nome válido" required />
+                    <input class="cadastro__input" type="text" name="nome" placeholder="Nome"
+                        pattern="^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+" minlength="3" title="Insira um nome válido"
+                        required />
                     <label for="senha">Senha</label>
                     <input class="cadastro__input" type="password" name="senha" placeholder="Senha" required />
                     <div class="cadastro__telefone">
@@ -63,6 +65,7 @@
                 </form>
             </div>
         </section>
+        <span id="alerta"></span>
     </main>
 </body>
 <script type="text/javascript">

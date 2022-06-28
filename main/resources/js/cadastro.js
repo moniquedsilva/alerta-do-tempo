@@ -38,10 +38,26 @@ window.addEventListener("load", function () {
     //Resposta para inserção do cadastro
     function respostaSubmitForm(respostaJSON) {
         let resposta = JSON.parse(respostaJSON);
+        let alerta = document.getElementById("alerta");
+        //Verifica se cadastro foi realizado com sucesso
         if (resposta["status"]) {
             document.getElementById("form_cadastro").reset();
+            //cores do background no sucesso
+            alerta.style.backgroundColor = "#3EFF45";
+        } else {
+            //cores do background na falha
+            alerta.style.backgroundColor = "#FF3E3E";
         }
-        alert(resposta["msg"]);
+
+        alerta.textContent = resposta["msg"];
+        let kf_alerta_slide = [
+            { top: "-15vh" },
+            { top: "0", offset: 0.15 },
+            { top: "0", offset: 0.85 },
+            { top: "-15vh", visibility: "visible" },
+        ];
+        let options = { easing: "ease", duration: 5000, fill: "backwards" };
+        alerta.animate(kf_alerta_slide, options);
     }
 
     function populaMuncipio() {
