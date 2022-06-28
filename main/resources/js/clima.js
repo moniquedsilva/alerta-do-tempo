@@ -41,7 +41,7 @@ window.addEventListener("load", function () {
     titulo.innerText = `Clima`;
 
     let fraseInicio = document.getElementById("texto");
-    fraseInicio.innerText = `Previsão do tempo para os próximos 4 dias em Salvador`;
+    fraseInicio.innerText = `Previsão do tempo para os próximos 4 dias em Salvador, Bahia.`;
 
     let alerta = `
                 <div class="alertas-area">
