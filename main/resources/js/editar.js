@@ -39,9 +39,8 @@ window.addEventListener("load", function () {
   function respostaSubmitForm(respostaJSON) {
       let resposta = JSON.parse(respostaJSON);
       if (resposta["status"]) {
-          document.getElementById("form_edit").reset();
+        window.location.replace(URL_REDIRECT);
       }
-      alert(resposta["msg"]);
   }
 
   function populaMuncipio() {

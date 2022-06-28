@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib.sessions.backends.db import SessionStore as DBStore
 
 from django.http import JsonResponse
 
@@ -11,7 +12,7 @@ from main.services.EstadosService import EstadosService
 from main.services.MunicipiosService import MunicipiosService
 from main.validators.ClienteValidator import ClienteValidator
 
-class EditarController(View):
+class EditarController(View, DBStore):
 
     def get(self, request, *args, **kwargs):
         '''
@@ -19,11 +20,37 @@ class EditarController(View):
         :param request: requisão HTTP GET.
         :return: render(request, 'editar.html').
         '''
+        if not self.esta_logado(request):
+            return render(request, 'errors/401.html')
+
         estados_service = EstadosService()
         estados = estados_service.busca_siglas_estados()
-        return render(request, 'editar.html', {'estados': estados});
+        return render(request, 'editar.html', {'estados': estados})
+    
+    def post(self, request):
+        
+        if not self.esta_logado(request):
+            return render(request, 'errors/401.html')
+        
+        path_name = request.resolver_match.url_name
+        if(path_name == 'editar'):
+            return self.editar(request)
 
-    def editar(self, request):
+
+    def post(request, self, format=None):
+        '''
+        Recebe a requisição e encaminha para serem cadastradas
+        :param request: requisão HTTP POST.
+        :param path_name: loadCidadesByEstado or cadastrar.
+        :return: Direciona para loadCidadesByEstado se path_name for 'loadCidadesByEstado' ou editar se path_name for 'editar'.
+        '''
+        path_name = request.resolver_match.url_name
+        if(path_name == 'loadCidadesByEstado'):
+            return self.loadCidadesByEstado(request)
+        if(path_name == 'editar'):
+            return self.editar(request)
+
+    def editar(request, self, format=None):
         '''
         Edita um usuario cadastrado
         :param request: requisão HTTP POST.
@@ -36,10 +63,9 @@ class EditarController(View):
         :param estado_id: string.
         :return: JsonResponse com status.
         '''
-        celular_atual = self.session.get('_auth_user_id');
 
-        buscar_usario = ClienteService.busca(self, celular=celular_atual)
-        
+        celular_atual = request.session['_auth_user_id']
+
         nome = request.POST['nome']
         ddi = request.POST['ddi']
         ddd = request.POST['ddd']
@@ -49,33 +75,25 @@ class EditarController(View):
         estado_id = request.POST['estado']
 
         cliente = Cliente(nome, ddi, ddd, celular,
-                          senha, municipio_id, estado_id)
-
+                        senha, municipio_id, estado_id)
+        
         cliente_service = ClienteService(cliente)
-        estados_service = EstadosService()
-        municipios_service = MunicipiosService()
 
-        cliente_validator = ClienteValidator(
-            cliente, cliente_service, estados_service, municipios_service)
-        resposta_validacao = cliente_validator.valida()
-        if(not resposta_validacao['status']):
-            return JsonResponse(resposta_validacao)
-
-        ClienteService.atualiza(cliente, celular_atual=celular_atual)
-
-        if(not cliente_service.atualiza()):
+        if(not cliente_service.atualiza(celular_atual)):
             return JsonResponse({"status": False, 'msg': "Erro de atualização, por favor tente mais tarde!"})
 
         # Se tudo ok, retorna mensagem de sucesso
-        if self.method == 'POST':
-            celular = self.POST['celular']
-            senha = self.POST['senha']
-
-            user = authenticate(self, celular=celular, senha=senha)
-            if user is not None:
-                login(self, user)
-                self.session['_auth_user_id'] = celular
-                return render(self, 'dashboard.html')
+        logout(request)
+        user = authenticate(self, celular=celular, senha=senha)
+        if user is not None:
+            login(request, user)
+            request.session['_auth_user_id'] = celular
+            return JsonResponse({'status': True})
+    
+    def esta_logado(self, request):
+        if "_auth_user_id" not in request.session:
+            return False
+        return True
 
 
         

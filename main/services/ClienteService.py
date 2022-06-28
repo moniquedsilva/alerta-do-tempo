@@ -24,10 +24,10 @@ class ClienteService():
         insert_result = dbClientes.insert_one(cliente_dict)
         return insert_result.acknowledged
 
-    def busca(self, celular = None):
+    def busca(self, celular=None):
         if(celular == None):
             return dbClientes.find(projection={'_id': False})
-        else:    
+        else:
             return dbClientes.find_one({'celular':  celular}, projection={'_id': False})
 
     def atualiza(self, celular_atual):
@@ -36,22 +36,11 @@ class ClienteService():
         '''
 
         self.cliente.senha = make_password(self.cliente.senha)
+        print(self.cliente_to_dict())
 
-        cliente_atualiza = {'nome': self.cliente.nome,
-                        'ddi': self.cliente.ddi,
-                        'ddd': self.cliente.ddd,
-                        'celular': self.cliente.celular,
-                        'senha': self.cliente.senha,
-                        'municipio_id': self.cliente.municipio_id,
-                        'estado_id': self.cliente.estado_id}
-
-        alteracao =  dbClientes.update_one({'celular':  celular_atual} ,
-            {
-                "$set":{cliente_atualiza},
-            }
-            )
+        alteracao = dbClientes.update_one({'celular':  celular_atual},
+                                          {"$set": self.cliente_to_dict()})
         return alteracao
-
 
     def deleta(self):
         """Deleta clientes"""
@@ -61,19 +50,12 @@ class ClienteService():
         celular = self.cliente.celular
         return dbClientes.count_documents({"celular": celular})
 
-    # -------------------- Funções de organização de dados ------------------------#
-    def agrupa_clientes_by_municipio_id(self, all_clientes):
-        clientes_by_municipio_id = {}
-        for cliente in all_clientes:
-            key = cliente['municipio_id']
-            cliente_dados = {'nome': cliente['nome'], 
-                            'ddi': cliente['ddi'],
-                            'ddd': cliente['ddd'],
-                            'celular': cliente['celular'],
-                            'estado_id': cliente['estado_id']
-                            }
-            if  key in clientes_by_municipio_id.keys():
-                clientes_by_municipio_id[cliente['municipio_id']].append(cliente_dados)
-            else:
-                clientes_by_municipio_id[cliente['municipio_id']] = [cliente_dados]
-        return clientes_by_municipio_id
+    def cliente_to_dict(self):
+        cliente_dict = {'nome': self.cliente.nome,
+                        'ddi': self.cliente.ddi,
+                        'ddd': self.cliente.ddd,
+                        'celular': self.cliente.celular,
+                        'senha': self.cliente.senha,
+                        'municipio_id': self.cliente.municipio_id,
+                        'estado_id': self.cliente.estado_id}
+        return cliente_dict

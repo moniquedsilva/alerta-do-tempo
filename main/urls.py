@@ -43,7 +43,7 @@ urlpatterns = [
     path('dashboard/loadPrevisao',
          DashboardController.as_view(), name='loadPrevisao'),
     path('editar', EditarController.as_view(), name='editarIndex'),
-    path('editar/user/', EditarController.editar, name='editar')
+    path('editar/user/', EditarController.as_view(), name='editar')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 handler400 = 'main.views.handler400'
