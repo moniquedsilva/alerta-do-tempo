@@ -12,21 +12,25 @@ class RequisicaoOndas(RequisicoesAPI):
     def trata_dados(self) -> bool:
         root = ET.fromstring(self.data)
         possui_data = False
+        dados = {}
+        lista_turno = {}
         for elem in root:
             possui_data = True
-            if elem.tag == "nome": nome = elem.text
-            if elem.tag == "uf": uf = elem.text
-            if elem.tag == "atualizacao": atualizacao = elem.text
-            if elem.tag == "manha" or elem.tag == "tarde" or elem.tag == "noite":
-                for e in elem:
-                    if e.tag == "dia": dia = e.text
-                    if e.tag == "agitacao": agitacao = e.text
-                    if e.tag == "altura": altura = e.text
-                    if e.tag == "direcao": direcao = e.text
-                    if e.tag == "vento": vento = e.text
-                    if e.tag == "vento_dir": vento_dir = e.text
-                if elem.tag == "manha": manha = OndasInfo(dia, agitacao, altura, direcao, vento, vento_dir)
-                if elem.tag == "tarde": tarde = OndasInfo(dia, agitacao, altura, direcao, vento, vento_dir)
-                if elem.tag == "noite": noite = OndasInfo(dia, agitacao, altura, direcao, vento, vento_dir)
-        self.pv_ondas = Ondas(nome, uf, atualizacao, manha, tarde, noite)
+            if elem.tag != "manha" and elem.tag != "tarde" and elem.tag != "noite":
+                dados.update({elem.tag: elem.text})
+            else:
+                dados_previsao = {e.tag: e.text for e in elem}
+                lista_turno.update({elem.tag: OndasInfo(dados_previsao['dia'],
+                                                        dados_previsao['agitacao'],
+                                                        dados_previsao['altura'],
+                                                        dados_previsao['direcao'],
+                                                        dados_previsao['vento'],
+                                                        dados_previsao['vento_dir'])})
+                
+        self.pv_ondas = Ondas(dados['nome'], 
+                                dados['uf'], 
+                                dados['atualizacao'], 
+                                lista_turno['manha'], 
+                                lista_turno['tarde'], 
+                                lista_turno['noite'])
         return possui_data
