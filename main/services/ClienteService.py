@@ -32,20 +32,10 @@ class ClienteService():
         '''
 
         self.cliente.senha = make_password(self.cliente.senha)
-
-        cliente_atualiza = {'nome': self.cliente.nome,
-                        'ddi': self.cliente.ddi,
-                        'ddd': self.cliente.ddd,
-                        'celular': self.cliente.celular,
-                        'senha': self.cliente.senha,
-                        'municipio_id': self.cliente.municipio_id,
-                        'estado_id': self.cliente.estado_id}
+        print(self.cliente_to_dict())
 
         alteracao =  dbClientes.update_one({'celular':  celular_atual} ,
-            {
-                "$set":{cliente_atualiza},
-            }
-            )
+                                            {"$set": self.cliente_to_dict()})
         return alteracao
 
 
@@ -56,3 +46,13 @@ class ClienteService():
     def celular_existe(self):
         celular = self.cliente.celular
         return dbClientes.count_documents({"celular": celular})
+
+    def cliente_to_dict(self):
+        cliente_dict = {'nome': self.cliente.nome,
+                        'ddi': self.cliente.ddi,
+                        'ddd': self.cliente.ddd,
+                        'celular': self.cliente.celular,
+                        'senha': self.cliente.senha,
+                        'municipio_id': self.cliente.municipio_id,
+                        'estado_id': self.cliente.estado_id}
+        return cliente_dict

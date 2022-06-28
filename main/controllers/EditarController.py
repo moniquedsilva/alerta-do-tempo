@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 from django.http import JsonResponse
@@ -19,9 +19,21 @@ class EditarController(View):
         :param request: requisão HTTP GET.
         :return: render(request, 'editar.html').
         '''
+        if not self.esta_logado(request):
+            return render(request, 'errors/401.html')
+
         estados_service = EstadosService()
         estados = estados_service.busca_siglas_estados()
-        return render(request, 'editar.html', {'estados': estados});
+        return render(request, 'editar.html', {'estados': estados})
+    
+    def post(self, request):
+        
+        if not self.esta_logado(request):
+            return render(request, 'errors/401.html')
+        
+        path_name = request.resolver_match.url_name
+        if(path_name == 'editar'):
+            return self.editar(request)
 
     def editar(self, request):
         '''
@@ -36,10 +48,9 @@ class EditarController(View):
         :param estado_id: string.
         :return: JsonResponse com status.
         '''
-        celular_atual = self.session.get('_auth_user_id');
 
-        buscar_usario = ClienteService.busca(self, celular=celular_atual)
-        
+        celular_atual = request.session['_auth_user_id']
+
         nome = request.POST['nome']
         ddi = request.POST['ddi']
         ddd = request.POST['ddd']
@@ -49,33 +60,25 @@ class EditarController(View):
         estado_id = request.POST['estado']
 
         cliente = Cliente(nome, ddi, ddd, celular,
-                          senha, municipio_id, estado_id)
-
+                        senha, municipio_id, estado_id)
+        
         cliente_service = ClienteService(cliente)
-        estados_service = EstadosService()
-        municipios_service = MunicipiosService()
 
-        cliente_validator = ClienteValidator(
-            cliente, cliente_service, estados_service, municipios_service)
-        resposta_validacao = cliente_validator.valida()
-        if(not resposta_validacao['status']):
-            return JsonResponse(resposta_validacao)
-
-        ClienteService.atualiza(cliente, celular_atual=celular_atual)
-
-        if(not cliente_service.atualiza()):
+        if(not cliente_service.atualiza(celular_atual)):
             return JsonResponse({"status": False, 'msg': "Erro de atualização, por favor tente mais tarde!"})
 
         # Se tudo ok, retorna mensagem de sucesso
-        if self.method == 'POST':
-            celular = self.POST['celular']
-            senha = self.POST['senha']
-
-            user = authenticate(self, celular=celular, senha=senha)
-            if user is not None:
-                login(self, user)
-                self.session['_auth_user_id'] = celular
-                return render(self, 'dashboard.html')
+        logout(request)
+        user = authenticate(self, celular=celular, senha=senha)
+        if user is not None:
+            login(request, user)
+            request.session['_auth_user_id'] = celular
+            return JsonResponse({'status': True})
+    
+    def esta_logado(self, request):
+        if "_auth_user_id" not in request.session:
+            return False
+        return True
 
 
         
