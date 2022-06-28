@@ -8,31 +8,29 @@
 
 <img src="readme/tela.png" alt="exemplo imagem" align="center">
 
-> Cadastre-se na nossa plataforma e passe a receber alertas SMS em tempo real quando houver situações perigosas relacionadas a chuvas fortes, condições de UV perigosas e/ou ondas marítimas agitadas.
-
+> Cadastre-se na nossa plataforma e passe a receber alertas sobre situações perigosas relacionadas a chuvas fortes, condições de UV perigosas e/ou ondas marítimas agitadas.
 
 ## :earth_americas: Descrição
 
-  Sistema de alerta e previsão do tempo, capaz de notificar dispositivos cadastrados na plataforma web. Os dispositivos receberão alertas sms em tempo real quando houver situações perigosas relacionadas a chuvas fortes, condições de UV perigosas e/ou ondas marítimas agitadas. Iremos utilizar HTML, CSS e Javascript para construir o front-end, Python(Django) para manipular os dados no back-end, MongoDB para o banco de dados, uma API da INPE (Instituto Nacional de Pesquisas Espaciais) para coletarmos dados sobre o tempo em tempo real, e o protocolo SMS (Short Message Service) para notificar os celulares cadastrados.
+Sistema de alerta e previsão do tempo como objetivo de informar sobre situações perigosas relacionadas a chuvas fortes, condições de UV perigosas e/ou ondas marítimas agitadas. Iremos utilizar HTML, CSS e Javascript para construir o front-end, Python(Django) para manipular os dados no back-end, MongoDB para o banco de dados, uma API da INPE (Instituto Nacional de Pesquisas Espaciais) para coletarmos dados sobre o tempo em tempo real.
 
-- ### [Mockup](https://www.figma.com/file/8yBYbRXj2DwAk3MIccJeOc/Alerta-do-Tempo)
+-   ### [Mockup](https://www.figma.com/file/8yBYbRXj2DwAk3MIccJeOc/Alerta-do-Tempo)
 
 ## :rocket: Tecnologias
 
-- <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="">
+-   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="">
 
-- <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" alt="">
+-   <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" alt="">
 
-- <img src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white" alt="">
+-   <img src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white" alt="">
 
-- <img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white" alt="">
+-   <img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white" alt="">
 
-- <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="">
+-   <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="">
 
--  <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white" alt="">
+-   <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white" alt="">
 
 ## :world_map: Rotas
-
 
 ## :flight_departure: Instalação
 
@@ -90,17 +88,8 @@ Nossa equipe é composta por:
         </sub>
       </a>
     </td>
-    <td align="center">
-      <a href="https://github.com/felipe-sanches">
-        <img src="https://avatars.githubusercontent.com/u/38739389?v=4" width="100px;" alt="Foto do changes"/><br>
-        <sub>
-          <b>Felipe Sanches</b>
-        </sub>
-      </a>
-    </td>
   </tr>
 </table>
-
 
 ## 📝 Licença
 
