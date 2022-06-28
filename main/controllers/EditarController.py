@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib.sessions.backends.db import SessionStore as DBStore
 
 from django.http import JsonResponse
 
@@ -11,7 +12,7 @@ from main.services.EstadosService import EstadosService
 from main.services.MunicipiosService import MunicipiosService
 from main.validators.ClienteValidator import ClienteValidator
 
-class EditarController(View):
+class EditarController(View, DBStore):
 
     def get(self, request, *args, **kwargs):
         '''
@@ -35,7 +36,21 @@ class EditarController(View):
         if(path_name == 'editar'):
             return self.editar(request)
 
-    def editar(self, request):
+
+    def post(request, self, format=None):
+        '''
+        Recebe a requisição e encaminha para serem cadastradas
+        :param request: requisão HTTP POST.
+        :param path_name: loadCidadesByEstado or cadastrar.
+        :return: Direciona para loadCidadesByEstado se path_name for 'loadCidadesByEstado' ou editar se path_name for 'editar'.
+        '''
+        path_name = request.resolver_match.url_name
+        if(path_name == 'loadCidadesByEstado'):
+            return self.loadCidadesByEstado(request)
+        if(path_name == 'editar'):
+            return self.editar(request)
+
+    def editar(request, self, format=None):
         '''
         Edita um usuario cadastrado
         :param request: requisão HTTP POST.
