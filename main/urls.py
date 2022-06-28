@@ -20,6 +20,7 @@ from django.urls import path
 
 from main.controllers.ClienteController import ClienteController
 from main.controllers.DashboardController import DashboardController
+from main.controllers.EditarController import EditarController
 from main.controllers.HomeController import HomeController
 from main.controllers.LoginController import LoginController
 from main.controllers.RequisicoesController import RequisicoesController
@@ -34,6 +35,8 @@ urlpatterns = [
     path('requisicao/', RequisicoesController.as_view(), name='RequisicaoLog'),
     path('login/user/', LoginController.login_user, name='login'),
     path('logout', LoginController.logout_user, name='logout'),
+    path('editar', EditarController.as_view(), name='editarIndex'),
+    path('editar/user/', EditarController.as_view(), name='editar'),
     path('dashboard', DashboardController.as_view(), name='dashboard'),
     path('dashboard/loadPrevisao',
          DashboardController.as_view(), name='loadPrevisao')
