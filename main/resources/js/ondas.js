@@ -34,115 +34,41 @@ window.addEventListener("load", function () {
         main.innerHTML += loading;
     }
 
-    let main = document.getElementById("alerta");
-    main.innerHTML = "";
-
-    let titulo = document.getElementById("titulo");
-    titulo.innerText = `Ondas`;
-
-    let fraseInicio = document.getElementById("texto");
-    fraseInicio.innerText = `Previsão de maré para os próximos 4 dias em Salvador, Bahia.`;
-
-    let previsaoOndas = `
-                <div class="alertas-area">
-                    <div class="alertas-texto">
-                        <h2>28/06/2022</h2>
-                        <div class="alertas-temperatura">
-                            <p>Altura: 2.18m</p>
-                        </div>
-                        <p class="alertas-tipo">Alto</p>
-                    </div>
-                    <img src="/main/resources/assets/images/ondas.svg" alt="Ondas" class="alertas-img-ondas" />
-                </div>
-            `;
-
-    main.innerHTML += previsaoOndas;
-
-    previsaoOndas = `
-                <div class="alertas-area">
-                    <div class="alertas-texto">
-                        <h2>29/06/2022</h2>
-                        <div class="alertas-temperatura">
-                            <p>Altura: 2.17m</p>
-                        </div>
-                        <p class="alertas-tipo">Alto</p>
-                    </div>
-                    <img src="/main/resources/assets/images/ondas.svg" alt="Ondas" class="alertas-img-ondas" />
-                </div>
-            `;
-
-    main.innerHTML += previsaoOndas;
-
-    previsaoOndas = `
-                <div class="alertas-area">
-                    <div class="alertas-texto">
-                        <h2>30/06/2022</h2>
-                        <div class="alertas-temperatura">
-                            <p>Altura: 2.15m</p>
-                        </div>
-                        <p class="alertas-tipo">Alto</p>
-                    </div>
-                    <img src="/main/resources/assets/images/ondas.svg" alt="Ondas" class="alertas-img-ondas" />
-                </div>
-            `;
-
-    main.innerHTML += previsaoOndas;
-
-    previsaoOndas = `
-                <div class="alertas-area">
-                    <div class="alertas-texto">
-                        <h2>01/07/2022</h2>
-                        <div class="alertas-temperatura">
-                            <p>Altura: 2.12m</p>
-                        </div>
-                        <p class="alertas-tipo">Alto</p>
-                    </div>
-                    <img src="/main/resources/assets/images/ondas.svg" alt="Ondas" class="alertas-img-ondas" />
-                </div>
-            `;
-
-    main.innerHTML += previsaoOndas;
-
-    function respostaDados(dadosJSON) {
-        console.log(dadosJSON);
-    }
-});
-
-/*
     function formatarData(data) {
-        const [yyyy, mm, dd] = data.split("-");
+        const separarData = data.split(" ");
+        const [dd, mm, yyyy] = separarData[0].split("-");
         return `${dd}/${mm}/${yyyy}`;
     }
 
     function respostaDados(dadosJSON) {
         let dados = JSON.parse(dadosJSON);
-        const { chuvas_iuv } = dados;
+        const { ondas, usuario } = dados;
 
         let titulo = document.getElementById("titulo");
-        titulo.innerText = `Clima`;
+        titulo.innerText = `Ondas`;
 
         let fraseInicio = document.getElementById("texto");
-        fraseInicio.innerText = `Previsão do tempo para os próximos 4 dias em ${usuario.municipio}, ${usuario.estado}.`;
+        fraseInicio.innerText = `Previsão da maré para os próximos 4 dias em ${usuario.municipio}, ${usuario.estado}.`;
 
         let main = document.getElementById("alerta");
         main.innerHTML = "";
-
-        chuvas_iuv.lista_previsao.forEach((item) => {
+        for (let i = 0; i < 4; i++) {
+            const item = ondas.lista_previsao[i];
             const dia = formatarData(item.dia);
-            const icon = item.categoria;
-            let alerta = `
+            let previsaoOndas = `
                 <div class="alertas-area">
                     <div class="alertas-texto">
                         <h2>${dia}</h2>
                         <div class="alertas-temperatura">
-                            <p>Máxima: ${item.maxima} ºC</p>
-                            <p>Mínima: ${item.minima} ºC</p>
+                            <p>Altura: ${item.altura} m</p>
                         </div>
-                        <p class="alertas-tipo">${item.tempo_descricao}</p>
+                        <p class="alertas-tipo">${item.agitacao}</p>
                     </div>
-                    <img src="/main/resources/assets/images/${icon}.png" alt="${item.tempo}-tempo" class="alertas-img" />
+                    <img src="/main/resources/assets/images/ondas.svg" alt="Ondas" class="alertas-img-ondas" />
                 </div>
             `;
-        });
+
+            main.innerHTML += previsaoOndas;
+        }
     }
-*/
+});

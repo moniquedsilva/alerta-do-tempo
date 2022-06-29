@@ -29,11 +29,11 @@ window.addEventListener("load", function () {
         xhr.send(data);
     }
 
-    //Resposta para tentativa de login 
+    //Resposta para tentativa de login
     function respostaSubmitForm(respostaJSON) {
         let resposta = JSON.parse(respostaJSON);
-        
-        if(resposta['status'] == false){
+
+        if (resposta["status"] == false) {
             //login falhou
             let alerta = document.getElementById("alerta");
             alerta.textContent = resposta["msg"];
@@ -43,15 +43,11 @@ window.addEventListener("load", function () {
                 { top: "0", offset: 0.85 },
                 { top: "-15vh", visibility: "visible" },
             ];
-            let options = { easing: "ease", duration: 3000, fill: "backwards" };
+            let options = { easing: "ease", duration: 7000, fill: "backwards" };
             alerta.animate(kf_alerta_slide, options);
-
-        }else{
+        } else {
             //login com sucesso
             window.location.replace(URL_REDIRECT);
         }
-        
-        
     }
-    
 });

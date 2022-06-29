@@ -1,16 +1,15 @@
-from django.shortcuts import render, redirect
-from django.views import View
-from django.contrib.sessions.backends.db import SessionStore as DBStore
-
-from django.http import JsonResponse
-
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.sessions.backends.db import SessionStore as DBStore
+from django.http import JsonResponse
+from django.shortcuts import redirect, render
+from django.views import View
 
 from main.models.Cliente import Cliente
 from main.services.ClienteService import ClienteService
 from main.services.EstadosService import EstadosService
 from main.services.MunicipiosService import MunicipiosService
 from main.validators.ClienteValidator import ClienteValidator
+
 
 class EditarController(View, DBStore):
 
@@ -65,8 +64,8 @@ class EditarController(View, DBStore):
         estado_id = request.POST['estado']
 
         cliente = Cliente(nome, ddi, ddd, celular,
-                        senha, municipio_id, estado_id)
-        
+                          senha, municipio_id, estado_id)
+
         cliente_service = ClienteService(cliente)
 
         if(not cliente_service.atualiza(celular_atual)):
@@ -78,8 +77,8 @@ class EditarController(View, DBStore):
         if user is not None:
             login(request, user)
             request.session['_auth_user_id'] = celular
-            return JsonResponse({'status': True})
-    
+            return JsonResponse({"status": True, 'msg': "Informações atualizadas com sucesso!"})
+
     def loadCidadesByEstado(self, request):
         '''
         Carrega drop-down de cidades
@@ -94,14 +93,8 @@ class EditarController(View, DBStore):
         municipios_json = [{m['id']: m['nome']} for m in municipios]
 
         return JsonResponse({'municipios': municipios_json})
-    
+
     def esta_logado(self, request):
         if "_auth_user_id" not in request.session:
             return False
         return True
-
-
-        
-
-
-          
