@@ -23,10 +23,8 @@ window.addEventListener("load", function () {
         xhr.send(data);
     }
 
-    let main = document.getElementById("alerta");
-    main.innerHTML = "";
-
     function carregandoDados() {
+        let main = document.getElementById("alerta");
         const loading = `
             <div class="loader">
                 <div class="loader-wheel"></div>
@@ -36,77 +34,42 @@ window.addEventListener("load", function () {
         main.innerHTML += loading;
     }
 
-    let titulo = document.getElementById("titulo");
-    titulo.innerText = `Clima`;
-
-    let fraseInicio = document.getElementById("texto");
-    fraseInicio.innerText = `Previsão do tempo para os próximos 4 dias em Salvador, Bahia.`;
-
-    let alerta = `
-                <div class="alertas-area">
-                    <div class="alertas-texto">
-                        <h2>28/06/2022</h2>
-                        <div class="alertas-temperatura">
-                            <p>Máxima: 28 ºC</p>
-                            <p>Mínima: 24 ºC</p>
-                        </div>
-                        <p class="alertas-tipo">Chuvoso</p>
-                    </div>
-                    <img src="/main/resources/assets/images/chuvoso.png" alt="chuvoso-tempo" class="alertas-img" />
-                </div>
-            `;
-
-    main.innerHTML += alerta;
-
-    alerta = `
-                <div class="alertas-area">
-                    <div class="alertas-texto">
-                        <h2>29/06/2022</h2>
-                        <div class="alertas-temperatura">
-                            <p>Máxima: 27 ºC</p>
-                            <p>Mínima: 24 ºC</p>
-                        </div>
-                        <p class="alertas-tipo">Parcialmente nublado</p>
-                    </div>
-                    <img src="/main/resources/assets/images/sol-nublado.png" alt="sol-nublado-tempo" class="alertas-img" />
-                </div>
-            `;
-
-    main.innerHTML += alerta;
-
-    alerta = `
-                <div class="alertas-area">
-                    <div class="alertas-texto">
-                        <h2>30/06/2022</h2>
-                        <div class="alertas-temperatura">
-                            <p>Máxima: 28 ºC</p>
-                            <p>Mínima: 25 ºC</p>
-                        </div>
-                        <p class="alertas-tipo">Parcialmente nublado</p>
-                    </div>
-                    <img src="/main/resources/assets/images/sol-nublado.png" alt="sol-nublado-tempo" class="alertas-img" />
-                </div>
-            `;
-
-    main.innerHTML += alerta;
-
-    alerta = `
-                <div class="alertas-area">
-                    <div class="alertas-texto">
-                        <h2>01/07/2022</h2>
-                        <div class="alertas-temperatura">
-                            <p>Máxima: 28 ºC</p>
-                            <p>Mínima: 25 ºC</p>
-                        </div>
-                        <p class="alertas-tipo">Parcialmente nublado</p>
-                    </div>
-                    <img src="/main/resources/assets/images/sol-nublado.png" alt="sol-nublado-tempo" class="alertas-img" />
-                </div>
-            `;
-
-    main.innerHTML += alerta;
+    function formatarData(data) {
+        const [yyyy, mm, dd] = data.split("-");
+        return `${dd}/${mm}/${yyyy}`;
+    }
 
     function respostaDados(dadosJSON) {
-        console.log(dadosJSON);
+        let dados = JSON.parse(dadosJSON);
+        const { chuvas_iuv, usuario } = dados;
+
+        let titulo = document.getElementById("titulo");
+        titulo.innerText = `Clima`;
+
+        let fraseInicio = document.getElementById("texto");
+        fraseInicio.innerText = `Previsão do tempo para os próximos 4 dias em ${usuario.municipio}, ${usuario.estado}.`;
+
+        let main = document.getElementById("alerta");
+        main.innerHTML = "";
+
+        for (let i = 0; i < 4; i++) {
+            const item = chuvas_iuv.lista_previsao[i];
+            const dia = formatarData(item.dia);
+            let previsaoClima = `
+                <div class="alertas-area">
+                    <div class="alertas-texto">
+                        <h2>${dia}</h2>
+                        <div class="alertas-temperatura">
+                            <p>Máxima: ${item.maxima} ºC</p>
+                            <p>Mínima: ${item.minima} ºC</p>
+                        </div>
+                        <p class="alertas-tipo">${item.tempo_descricao}</p>
+                    </div>
+                    <img src="/main/resources/assets/images/${item.categoria}.png" alt="${item.tempo}-tempo" class="alertas-img" />
+                </div>
+            `;
+
+            main.innerHTML += previsaoClima;
+        }
     }
 });

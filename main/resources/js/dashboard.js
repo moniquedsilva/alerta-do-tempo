@@ -126,11 +126,5 @@ window.addEventListener("load", function () {
             `;
 
         main.innerHTML += previsaoVentos;
-
-        console.log(dados);
     }
-
-    /*As categorias do tempo são 6:
-        nevada, tempestade, chuvoso, nublado
-        parcialmente-nublado e ensolarado*/
 });

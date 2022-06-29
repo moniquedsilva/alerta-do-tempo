@@ -54,7 +54,7 @@ window.addEventListener("load", function () {
         for (let i = 0; i < 4; i++) {
             const item = chuvas_iuv.lista_previsao[i];
             const dia = formatarData(item.dia);
-            let previsaoOndas = `
+            let previsaoUV = `
                 <div class="alertas-area">
                     <div class="alertas-texto">
                         <h2>${dia}</h2>
@@ -67,7 +67,7 @@ window.addEventListener("load", function () {
                 </div>
             `;
 
-            main.innerHTML += previsaoOndas;
+            main.innerHTML += previsaoUV;
         }
     }
 });
