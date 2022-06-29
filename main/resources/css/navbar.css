@@ -31,7 +31,6 @@ nav {
     align-items: center;
     justify-content: space-between;
     padding: 1rem 2rem;
-    position: absolute;
 }
 
 .nav-title {
@@ -56,11 +55,9 @@ nav {
     width: 30px;
 }
 
-.links li {
-    padding: 0.5rem 1rem;
-}
-
 .links a {
+    display: block;
+    padding: 1rem 2rem;
     color: #f6f6f6;
     font-size: 1rem;
     font-weight: 500;
@@ -69,27 +66,21 @@ nav {
 }
 
 .links a:hover {
-    color: #99ceff;
+    background-color: #99ceff;
 }
 
 .links {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    height: auto;
+    height: 0;
     overflow: hidden;
     transition: all 0.3s linear;
 }
 
 .show-links {
-    height: 12rem;
-    background: #14123f;
-    position: absolute;
+    height: 18rem;
 }
 
 .nav-logout {
-    display: flex;
+    display: flex !important;
     align-items: center;
     gap: 0.625rem;
 }
@@ -102,7 +93,14 @@ nav {
     .nav-center {
         max-width: 1294px;
         margin: 0 auto;
-        padding: 1rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+    }
+
+    .nav-header {
+        padding: 0;
     }
 
     .nav-title {
@@ -116,12 +114,17 @@ nav {
     .links {
         height: auto;
         display: flex;
-        flex-direction: row;
+        align-items: center;
     }
 
-    .links li {
+    .links a {
         padding: 0;
-        margin: 0 1.2rem;
+        margin: 0 1rem;
+    }
+    .links a:hover {
+        padding: 0;
+        background: transparent;
+        color: #99ceff;
     }
 }
 
