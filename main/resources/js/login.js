@@ -33,7 +33,7 @@ window.addEventListener("load", function () {
     function respostaSubmitForm(respostaJSON) {
         let resposta = JSON.parse(respostaJSON);
 
-        if (resposta["status"] == false) {
+        if (!resposta["status"]) {
             //login falhou
             let alerta = document.getElementById("alerta");
             alerta.textContent = resposta["msg"];
