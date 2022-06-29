@@ -23,8 +23,10 @@ window.addEventListener("load", function () {
         xhr.send(data);
     }
 
+    let main = document.getElementById("alerta");
+    main.innerHTML = "";
+
     function carregandoDados() {
-        let main = document.getElementById("alerta");
         const loading = `
             <div class="loader">
                 <div class="loader-wheel"></div>
@@ -33,9 +35,6 @@ window.addEventListener("load", function () {
         `;
         main.innerHTML += loading;
     }
-
-    let main = document.getElementById("alerta");
-    main.innerHTML = "";
 
     let titulo = document.getElementById("titulo");
     titulo.innerText = `Clima`;
@@ -111,42 +110,3 @@ window.addEventListener("load", function () {
         console.log(dadosJSON);
     }
 });
-
-/*
-    function formatarData(data) {
-        const [yyyy, mm, dd] = data.split("-");
-        return `${dd}/${mm}/${yyyy}`;
-    }
-
-    function respostaDados(dadosJSON) {
-        let dados = JSON.parse(dadosJSON);
-        const { chuvas_iuv } = dados;
-
-        let titulo = document.getElementById("titulo");
-        titulo.innerText = `Clima`;
-
-        let fraseInicio = document.getElementById("texto");
-        fraseInicio.innerText = `Previsão do tempo para os próximos 4 dias em ${usuario.municipio}, ${usuario.estado}.`;
-
-        let main = document.getElementById("alerta");
-        main.innerHTML = "";
-
-        chuvas_iuv.lista_previsao.forEach((item) => {
-            const dia = formatarData(item.dia);
-            const icon = item.categoria;
-            let alerta = `
-                <div class="alertas-area">
-                    <div class="alertas-texto">
-                        <h2>${dia}</h2>
-                        <div class="alertas-temperatura">
-                            <p>Máxima: ${item.maxima} ºC</p>
-                            <p>Mínima: ${item.minima} ºC</p>
-                        </div>
-                        <p class="alertas-tipo">${item.tempo_descricao}</p>
-                    </div>
-                    <img src="/main/resources/assets/images/${icon}.png" alt="${item.tempo}-tempo" class="alertas-img" />
-                </div>
-            `;
-        });
-    }
-*/

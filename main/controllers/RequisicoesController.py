@@ -205,8 +205,6 @@ class RequisicoesController(View):
         """ Realiza requisição e tratamento dos dados de ondas"""
         url_ondas = "http://servicos.cptec.inpe.br/XML/cidade/" + \
                     id_cidade + "/todos/tempos/ondas.xml"
-        #url_ondas = "http://servicos.cptec.inpe.br/XML/cidade/" + \
-        #    id_cidade + "/dia/1/ondas.xml"
         req_ondas = RequisicaoOndas(url_ondas)
         if(not req_ondas.executa_requisicao()):
             return None
@@ -379,7 +377,6 @@ class RequisicoesController(View):
             for d in dict_sms:
                 logging.info("Iniciando envio de alerta sms: " + d)
             self.envia_sms(clientes, dict_sms)
-
 
     def buffer_sms(self, dado, tipo, dict_sms):
         if(dado != None):
