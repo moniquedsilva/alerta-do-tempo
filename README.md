@@ -8,11 +8,11 @@
 
 <img src="readme/tela.png" alt="exemplo imagem" align="center">
 
-> Cadastre-se na nossa plataforma e passe a receber alertas sobre situações perigosas relacionadas a chuvas fortes, condições de UV perigosas e/ou ondas marítimas agitadas.
+> Cadastre-se na nossa plataforma e confira informações sobre a previsão do tempo relacionadas a chuvas fortes, condições de UV perigosas e/ou ondas marítimas agitadas.
 
 ## :earth_americas: Descrição
 
-Sistema de alerta e previsão do tempo como objetivo de informar sobre situações perigosas relacionadas a chuvas fortes, condições de UV perigosas e/ou ondas marítimas agitadas. Iremos utilizar HTML, CSS e Javascript para construir o front-end, Python(Django) para manipular os dados no back-end, MongoDB para o banco de dados, uma API da INPE (Instituto Nacional de Pesquisas Espaciais) para coletarmos dados sobre o tempo em tempo real.
+Sistema Web de previsão do tempo com objetivo de informar sobre a previsão do tempo relacionadas a chuvas fortes, condições de UV perigosas e/ou ondas marítimas agitadas. Iremos utilizar HTML, CSS e Javascript para construir o front-end, Python(Django) para manipular os dados no back-end, MongoDB para o banco de dados, uma API da INPE (Instituto Nacional de Pesquisas Espaciais) para coletarmos dados sobre o tempo em tempo real.
 
 -   ### [Mockup](https://www.figma.com/file/8yBYbRXj2DwAk3MIccJeOc/Alerta-do-Tempo)
 
@@ -27,8 +27,6 @@ Sistema de alerta e previsão do tempo como objetivo de informar sobre situaçõ
 -   <img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white" alt="">
 
 -   <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="">
-
--   <img src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white" alt="">
 
 ## :world_map: Rotas
 
