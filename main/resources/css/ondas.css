@@ -1,0 +1,56 @@
+*,
+::after,
+::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Montserrat", sans-serif;
+    background: #06105e;
+    color: #f6f6f6;
+    line-height: 1.5;
+    font-size: 0.875rem;
+}
+ul {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4 {
+    line-height: 1.25;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.ondas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 2rem;
+}
+
+@media (min-width: 800px) {
+    .ondas {
+        margin: 0 auto;
+        max-width: 1294px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .btn {
+        padding: 19px 0;
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .ondas {
+        padding-bottom: 1rem;
+    }
+}

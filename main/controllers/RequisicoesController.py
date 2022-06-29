@@ -204,7 +204,9 @@ class RequisicoesController(View):
     def req_ondas(cls, id_cidade) -> Ondas:
         """ Realiza requisição e tratamento dos dados de ondas"""
         url_ondas = "http://servicos.cptec.inpe.br/XML/cidade/" + \
-            id_cidade + "/dia/1/ondas.xml"
+                    id_cidade + "/todos/tempos/ondas.xml"
+        #url_ondas = "http://servicos.cptec.inpe.br/XML/cidade/" + \
+        #    id_cidade + "/dia/1/ondas.xml"
         req_ondas = RequisicaoOndas(url_ondas)
         if(not req_ondas.executa_requisicao()):
             return None

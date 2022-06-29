@@ -1,0 +1,51 @@
+.loader {
+    margin: 0 auto;
+    width: 100px;
+}
+
+.loader-wheel {
+    animation: spin 1s infinite linear;
+    border: 2px solid rgba(30, 30, 30, 0.5);
+    border-left: 4px solid #fff;
+    border-radius: 50%;
+    height: 90px;
+    margin-bottom: 10px;
+    width: 90px;
+}
+
+.loader-text {
+    margin-top: 16px;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.loader-text:after {
+    content: "Loading";
+    animation: load 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes load {
+    0% {
+        content: "Carregando";
+    }
+    33% {
+        content: "Carregando.";
+    }
+    67% {
+        content: "Carregando..";
+    }
+    100% {
+        content: "Carregando...";
+    }
+}

@@ -1,0 +1,140 @@
+*,
+::after,
+::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Montserrat", sans-serif;
+    background: #06105e;
+    color: #f6f6f6;
+    line-height: 1.5;
+    font-size: 0.875rem;
+}
+ul {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4 {
+    line-height: 1.25;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+.conteiner {
+    width: 100%;
+}
+
+.conteiner-titulo {
+    margin-top: 0;
+    font-size: 1.25rem;
+    text-align: center;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+}
+
+.conteiner-texto {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.alertas,
+.alertas-coluna {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.alertas-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 163px;
+    border-radius: 8px;
+    padding: 0.875rem;
+    background: #14123f;
+}
+
+.alertas-texto {
+    text-align: center;
+    width: 290px;
+}
+
+.alertas-texto h2 {
+    margin-bottom: 0.625rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.alertas-temperatura {
+    margin-bottom: 0.625rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.alertas-tipo {
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: #e5af00;
+}
+
+.alertas-img {
+    width: 110px;
+}
+
+.alertas-img-ondas {
+    width: 85px;
+}
+
+@media (min-width: 800px) {
+    .conteiner-titulo {
+        font-size: 2.25rem;
+    }
+
+    .conteiner-texto {
+        font-size: 1rem;
+    }
+
+    .alertas-texto h2 {
+        font-size: 1.2rem;
+    }
+
+    .alertas-temperatura {
+        font-size: 1.125rem;
+    }
+
+    .alertas-tipo {
+        font-size: 1.375rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .alertas {
+        margin: 2rem auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 85%;
+    }
+
+    .alertas-coluna {
+        margin: 2rem auto;
+        justify-content: center;
+        width: 90%;
+    }
+
+    .alertas-area {
+        width: 48%;
+    }
+}

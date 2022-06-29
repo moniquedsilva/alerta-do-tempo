@@ -56,7 +56,7 @@ window.addEventListener("load", function () {
             { top: "0", offset: 0.85 },
             { top: "-15vh", visibility: "visible" },
         ];
-        let options = { easing: "ease", duration: 5000, fill: "backwards" };
+        let options = { easing: "ease", duration: 7000, fill: "backwards" };
         alerta.animate(kf_alerta_slide, options);
     }
 
