@@ -22,11 +22,11 @@ Sistema Web de previsão do tempo com objetivo de informar sobre a previsão do 
 
 -   <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" alt="" />
 
--   <img src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white" alt="" />
+-   <img src="https://img.shields.io/badge/HTML-DE3C4B?style=for-the-badge&logo=html5&logoColor=242325" alt="" />
 
--   <img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white" alt="" />
+-   <img src="https://img.shields.io/badge/CSS-3083DC?style=for-the-badge&logo=css3&logoColor=white" alt="" />
 
--   <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=javascript&logoColor=white" alt="" />
+-   <img src="https://img.shields.io/badge/Javacript-FFE347?style=for-the-badge&logo=javascript&logoColor=242325" alt="" />
 
 -   <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="" />
 
